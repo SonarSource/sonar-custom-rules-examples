@@ -13,7 +13,7 @@
 
 	<properties>
 		<sonar.version>5.6</sonar.version>
-		<java.plugin.version>4.2</java.plugin.version>
+		<java.plugin.version>4.2.1.6971</java.plugin.version>
 		<sslr.version>1.21</sslr.version>
 		<gson.version>2.6.2</gson.version>
 	</properties>
