@@ -1,0 +1,13 @@
+{
+  "title": "Avoid method declarations",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "10min"
+  },
+  "tags": [
+    "bug",
+    "pitfall"
+  ],
+  "defaultSeverity": "Minor"
+}

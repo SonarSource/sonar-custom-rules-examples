@@ -1,0 +1,12 @@
+{
+  "title": "Security Annotation Mandatory",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "5min"
+  },
+  "tags": [
+    "security"
+  ],
+  "defaultSeverity": "Minor"
+}

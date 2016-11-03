@@ -1,0 +1,7 @@
+     D DS_1            DS     30
+     
+     D XX1             DS     30                                               // Noncompliant {{The name of the data structure should start with 'DS_'}}
+
+     D STANDALONE1     S             30A 0
+
+
