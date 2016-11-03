@@ -1,3 +1,3 @@
-This example demonstrates how to write new *custom* rules for the Java analyzer.
+This example demonstrates how to write *custom* rules for the Java Analyzer.
 
-It requires to install the **Java Plugin**, at least version **4.2**, which is compatible with SonarQube 5.6.x LTS.
+It requires to install the **Java Plugin**, at least version **4.2.x**, which is compatible with SonarQube 5.6.x LTS.
