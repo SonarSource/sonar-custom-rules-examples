@@ -51,22 +51,25 @@
       <plugin>
         <groupId>org.sonarsource.sonar-packaging-maven-plugin</groupId>
         <artifactId>sonar-packaging-maven-plugin</artifactId>
-        <version>1.15</version>
+        <version>1.17</version>
         <extensions>true</extensions>
         <configuration>
+          <pluginKey>js-custom</pluginKey>
+          <pluginName>JavaScript Custom Rules</pluginName>
           <pluginClass>org.sonar.samples.javascript.JavaScriptCustomRulesPlugin</pluginClass>
+          <sonarLintSupported>true</sonarLintSupported>
+          <sonarQubeMinVersion>5.6</sonarQubeMinVersion> <!-- allow to depend on API 6.x but run on LTS -->    
           <basePlugin>javascript</basePlugin>
-          <pluginKey>custom</pluginKey>
         </configuration>
       </plugin>
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.3.2</version>
+        <version>3.6.0</version>
         <configuration>
-          <source>1.7</source>
-          <target>1.7</target>
+          <source>1.8</source>
+          <target>1.8</target>
         </configuration>
       </plugin>
     </plugins>

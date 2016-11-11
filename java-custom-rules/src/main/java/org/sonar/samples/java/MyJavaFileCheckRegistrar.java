@@ -12,6 +12,7 @@ import org.sonar.samples.java.checks.AvoidUnmodifiableListRule;
 import org.sonar.samples.java.checks.MyCustomSubscriptionRule;
 import org.sonar.samples.java.checks.SecurityAnnotationMandatoryRule;
 import org.sonar.samples.java.checks.SpringControllerRequestMappingEntityRule;
+import org.sonarsource.api.sonarlint.SonarLintSide;
 
 /**
  * Provide the "checks" (implementations of rules) classes that are gonna be executed during
@@ -19,6 +20,7 @@ import org.sonar.samples.java.checks.SpringControllerRequestMappingEntityRule;
  *
  * This class is a batch extension by implementing the {@link org.sonar.plugins.java.api.CheckRegistrar} interface.
  */
+@SonarLintSide
 public class MyJavaFileCheckRegistrar implements CheckRegistrar {
 
   /**

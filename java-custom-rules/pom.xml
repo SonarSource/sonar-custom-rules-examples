@@ -12,7 +12,7 @@
 	<description>Java Custom Rules</description>
 
 	<properties>
-		<sonar.version>5.6</sonar.version>
+		<sonar.version>6.0</sonar.version>
 		<java.plugin.version>4.2.1.6971</java.plugin.version>
 		<sslr.version>1.21</sslr.version>
 		<gson.version>2.6.2</gson.version>
@@ -123,16 +123,18 @@
 				<version>1.17</version>
 				<extensions>true</extensions>
 				<configuration>
+					<pluginKey>java-custom</pluginKey>
+					<pluginName>Java Custom Rules</pluginName>
 					<pluginClass>org.sonar.samples.java.MyJavaRulesPlugin</pluginClass>
 					<sonarLintSupported>true</sonarLintSupported>
-					<sonarQubeMinVersion>5.6</sonarQubeMinVersion>
+					<sonarQubeMinVersion>5.6</sonarQubeMinVersion> <!-- allow to depend on API 6.x but run on LTS -->
 				</configuration>
 			</plugin>
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
+				<version>3.6.0</version>
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>

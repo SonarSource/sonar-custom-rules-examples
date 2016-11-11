@@ -13,7 +13,7 @@
 
   <properties>
     <sonar.version>5.6</sonar.version>
-    <rpg.plugin.version>2.0</rpg.plugin.version>
+    <rpg.plugin.version>2.0.0.496</rpg.plugin.version>
     <plugin.class>com.sonarsource.rpg.example.MyRpgCustomPlugin</plugin.class>
   </properties>
 
@@ -58,22 +58,25 @@
         <version>1.17</version>
         <extensions>true</extensions>
         <configuration>
+          <pluginKey>rpg-custom</pluginKey>
+          <pluginName>RPG Custom Rules</pluginName>
           <pluginClass>${plugin.class}</pluginClass>
-          <pluginKey>my-custom-rpg-plugin</pluginKey>
+          <sonarLintSupported>true</sonarLintSupported>
+          <sonarQubeMinVersion>5.6</sonarQubeMinVersion> <!-- allow to depend on API 6.x but run on LTS -->    
           <basePlugin>rpg</basePlugin>
-          <pluginDescription>This is my custom RPG plugin</pluginDescription>
         </configuration>
       </plugin>
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.1</version>
+        <version>3.6.0</version>
         <configuration>
           <source>1.8</source>
           <target>1.8</target>
         </configuration>
       </plugin>
+
     </plugins>
   </build>
 

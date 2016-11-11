@@ -42,16 +42,19 @@
         <version>1.17</version>
         <extensions>true</extensions>
         <configuration>
+          <pluginKey>php-custom</pluginKey>
+          <pluginName>PHP Custom Rules</pluginName>
           <pluginClass>org.sonar.samples.php.PHPCustomRulesPlugin</pluginClass>
+          <sonarLintSupported>true</sonarLintSupported>
+          <sonarQubeMinVersion>5.6</sonarQubeMinVersion> <!-- allow to depend on API 6.x but run on LTS -->    
           <basePlugin>php</basePlugin>
-          <pluginKey>custom</pluginKey>
         </configuration>
       </plugin>
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.3.2</version>
+        <version>3.6.0</version>
         <configuration>
           <source>1.8</source>
           <target>1.8</target>
