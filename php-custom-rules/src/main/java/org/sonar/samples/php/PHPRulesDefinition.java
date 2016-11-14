@@ -21,7 +21,7 @@ public class PHPRulesDefinition extends PHPCustomRulesDefinition {
    */
   @Override
   public String repositoryName() {
-    return "Custom Repository";
+    return "MyCompany Custom Repository";
   }
 
   /**

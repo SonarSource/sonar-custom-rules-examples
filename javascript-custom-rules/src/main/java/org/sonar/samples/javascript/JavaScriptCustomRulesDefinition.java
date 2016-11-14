@@ -19,7 +19,7 @@ public class JavaScriptCustomRulesDefinition extends CustomJavaScriptRulesDefini
    */
   @Override
   public String repositoryName() {
-    return "Custom JavaScript Repository";
+    return "MyCompany Custom Repository";
   }
 
   /**

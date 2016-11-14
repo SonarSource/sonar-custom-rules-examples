@@ -31,7 +31,7 @@ import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
   priority = Priority.MAJOR,
   name = "Forbidden function should not be used.",
   tags = {"convention"}
-// Description can either be given in this annotation or through HTML name <ruleKey>.html located in package src/resources/org/sonar/l10n/javascript/rules/<repositoryKey>
+// Description can either be given in this annotation or through HTML name <ruleKey>.html located in package src/main/resources/org/sonar/l10n/javascript/rules/<repositoryKey>
 // description = "<p>The following functions should not be used:</p> <ul><li>foo</li> <li>bar</li></ul>",
   )
 @SqaleSubCharacteristic(RulesDefinition.SubCharacteristics.DATA_RELIABILITY)

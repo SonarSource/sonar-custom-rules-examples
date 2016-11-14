@@ -17,6 +17,8 @@ public class MyRpgRulesDefinition implements CustomRulesDefinition {
   @Override
   public void define(Context context) {
     NewRepository repository = context.createRepository(REPOSITORY_KEY, "rpg");
+    repository.setName("MyCompany Custom Repository");
+    
     NewRule rule = repository.createRule(DataStructureNamingConventionCheck.RULE_KEY)
       .setName("This is the title of my rule")
       .setHtmlDescription("This is the HTML description of my rule")

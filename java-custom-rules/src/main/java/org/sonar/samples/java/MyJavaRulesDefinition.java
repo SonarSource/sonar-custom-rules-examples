@@ -35,7 +35,7 @@ public class MyJavaRulesDefinition implements RulesDefinition {
   public void define(Context context) {
     NewRepository repository = context
       .createRepository(REPOSITORY_KEY, Java.KEY)
-      .setName("MyCompany");
+      .setName("MyCompany Custom Repository");
 
     new AnnotationBasedRulesDefinition(repository, Java.KEY)
       .addRuleClasses(/* don't fail if no SQALE annotations */ false, RulesList.getChecks());
