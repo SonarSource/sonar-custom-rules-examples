@@ -12,7 +12,7 @@
 	<description>Java Custom Rules</description>
 
 	<properties>
-		<sonar.version>6.0</sonar.version>
+		<sonar.version>6.0</sonar.version> <!-- this 6.0 is only required to be compliant with SonarLint and it is required even if you just want to be compliant with SonarQube 5.6 -->
 		<java.plugin.version>4.2.1.6971</java.plugin.version>
 		<sslr.version>1.21</sslr.version>
 		<gson.version>2.6.2</gson.version>
