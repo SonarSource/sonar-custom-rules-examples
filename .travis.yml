@@ -1,12 +1,12 @@
 language: java
 sudo: false
 install: true
+jdk: oraclejdk8
+script: ./travis.sh
 
-jdk:
-  - oraclejdk8
-
-script:
-  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package
+env:
+  global:
+    - secure: "KQL//XkaY310Jt4efPl0H0K4BGoRqWlODWMJU9zLA32r0DK5X+bI6SBfj4IbBiG8HAXmz4uZyxcYeWaXBEteV0KR+XPAhUSNx5shN5AHvaTC3ap3jmR2yfrn07+VEkV/oRBLrja6ZuZxa8u0asj5YVKAv2bcYY9DuzX7pR6dmoc28xVX2gwdJT+J3zIwiDdG0TEWSXqZn4kmzCE5KIJMfxt2VnBkHQCxxInaiplkUNHIulnz1P1mvgfmn2+hcyAnUlyjyeFyHrmAq7esfk83ZhfVyHPclQlieEE2PddwgHKKGQ7QbYgzt2k91c0O+Gjn2snHx3MJszrDyulPDvhY3NFq4EhR6xOhDBWRG+U26hZIxgF7x8O173YN7TupiiPkSpClsEDrS1M603tpr1bApll9RMTDYr+Fgdzw5T3/StdgkwTdVTYPyywB+2qaSyuC0sVtqc9D5h750vjfUZd8YaPmAmxQt2inmVJBRb2Vr8uqpnf/qseOI4SO44SK0Vy4UQ2FCO5SVYCLYzOzGfL0wl8TKZnGl/uGJ+jkpjj8KNlvWa1cQoviVn7lUjp2pc7tYJe5O8CKvvq5w7i9GtDgOx9TiuEZJVadHbJ/UCwjp234cpMPAUKfKo/zluBgXUpMqvdThj9ccrJBpJCS3/lcEBxbK/rmgmhMkxxFoU0hnDY="
 
 cache:
   directories:

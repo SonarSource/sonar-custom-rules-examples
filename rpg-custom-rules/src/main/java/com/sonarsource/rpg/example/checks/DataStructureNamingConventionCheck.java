@@ -20,7 +20,7 @@ public class DataStructureNamingConventionCheck extends VisitorBasedCheck {
   public void visitDataStructureDefinition(DataStructureDefinitionTree definition) {
     if (!definition.name().startsWith("DS_")) {
       context().addIssue(ruleKey(), definition.startLine(), "The name of the data structure should start with 'DS_'", null);
-    }
+    } 
     // super.visitXX(...) should be called to visit child trees
     super.visitDataStructureDefinition(definition);
   }
