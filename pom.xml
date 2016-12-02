@@ -3,7 +3,7 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.sonar.samples</groupId>
+  <groupId>org.sonarsource.samples</groupId>
   <artifactId>sonarqube-custom-rules</artifactId>
   <packaging>pom</packaging>
   <version>5.6-SNAPSHOT</version>
