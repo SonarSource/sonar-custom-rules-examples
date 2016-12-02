@@ -12,11 +12,11 @@
   <description>SonarQube Custom Rules Examples</description>
 
   <modules>
+    <module>cobol-custom-rules</module>
     <module>java-custom-rules</module>
     <module>javascript-custom-rules</module>
     <module>php-custom-rules</module>
     <!--<module>rpg-custom-rules</module>-->
-    <!--<module>cobol-custom-rules</module>-->
   </modules>
 
 </project>  
