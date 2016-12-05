@@ -74,7 +74,7 @@
           <pluginName>COBOL Custom Rules</pluginName>
           <pluginClass>com.mycompany.cobol.sample.SamplePlugin</pluginClass>
           <sonarLintSupported>true</sonarLintSupported>
-          <sonarQubeMinVersion>5.6</sonarQubeMinVersion> <!-- allow to depend on API 6.x but run on LTS -->
+          <sonarQubeMinVersion>5.6</sonarQubeMinVersion>
           <basePlugin>cobol</basePlugin>
         </configuration>
       </plugin>
