@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.sonarsource.samples</groupId>
+  <artifactId>cobol-custom-rules</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>sonar-plugin</packaging>
+
+  <name>SonarQube COBOL Custom Rules Example</name>
+  <description>COBOL custom rules example for SonarQube</description>
+
+  <properties>
+    <!-- plugin versions -->
+    <version.maven-compiler-plugin>3.6.0</version.maven-compiler-plugin>
+    <version.sonar-packaging-maven-plugin>1.17</version.sonar-packaging-maven-plugin>
+    
+    <!-- JAR versions -->
+    <version.harmcrest>1.1</version.harmcrest>
+    <version.junit>4.11</version.junit>
+    <version.logback>1.1.7</version.logback>
+    <version.sonar-cobol-plugin>3.3.0.1589</version.sonar-cobol-plugin>
+    <version.sonar-plugin-api>5.6</version.sonar-plugin-api>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.sonarsource.sonarqube</groupId>
+      <artifactId>sonar-plugin-api</artifactId>
+      <version>${version.sonar-plugin-api}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.sonarsource.cobol</groupId>
+      <artifactId>sonar-cobol-plugin</artifactId>
+      <version>${version.sonar-cobol-plugin}</version>
+      <scope>system</scope>
+      <type>sonar-plugin</type>
+      <systemPath>${basedir}/lib/sonar-cobol-plugin-${version.sonar-cobol-plugin}.jar</systemPath>
+    </dependency>
+
+    <!-- For JUnit tests -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${version.junit}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-all</artifactId>
+      <version>${version.harmcrest}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>${version.logback}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.sonarsource.sonar-packaging-maven-plugin</groupId>
+        <artifactId>sonar-packaging-maven-plugin</artifactId>
+        <version>${version.sonar-packaging-maven-plugin}</version>
+        <extensions>true</extensions>
+        <configuration>
+          <pluginKey>cobol-custom</pluginKey>
+          <pluginName>COBOL Custom Rules</pluginName>
+          <pluginClass>com.mycompany.cobol.sample.SamplePlugin</pluginClass>
+          <sonarLintSupported>true</sonarLintSupported>
+          <sonarQubeMinVersion>5.6</sonarQubeMinVersion>
+          <basePlugin>cobol</basePlugin>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${version.maven-compiler-plugin}</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
