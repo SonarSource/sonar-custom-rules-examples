@@ -16,7 +16,8 @@ public class SampleCheckRepository extends CobolAstCheckRepository {
   public Collection getCheckClasses() {
     return Arrays.<Class>asList(
       SampleCheck.class,
-      ForbiddenCallCheck.class);
+      ForbiddenCallCheck.class,
+      TrivialEvaluateCheck.class);
   }
 
 }
