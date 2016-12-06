@@ -10,7 +10,8 @@
   <packaging>sonar-plugin</packaging>
 
   <name>SonarQube COBOL Custom Rules Example</name>
-  <description>COBOL custom rules example for SonarQube</description>
+  <description>COBOL Custom Rules Example for SonarQube</description>
+  <inceptionYear>2016</inceptionYear>
 
   <properties>
     <!-- plugin versions -->

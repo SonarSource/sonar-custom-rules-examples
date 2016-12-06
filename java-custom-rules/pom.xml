@@ -10,6 +10,7 @@
 
 	<name>SonarQube Java Custom Rules Example</name>
 	<description>Java Custom Rules Example for SonarQube</description>
+	<inceptionYear>2016</inceptionYear>
 
 	<properties>
 		<sonar.version>6.0</sonar.version> <!-- this 6.0 is only required to be compliant with SonarLint and it is required 

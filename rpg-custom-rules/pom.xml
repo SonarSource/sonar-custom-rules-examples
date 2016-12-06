@@ -10,6 +10,7 @@
 
 	<name>SonarQube RPG Custom Rules Example</name>
 	<description>RPG Custom Rules Example for SonarQube</description>
+	<inceptionYear>2016</inceptionYear>
 
 	<properties>
 		<sonar.version>5.6</sonar.version>

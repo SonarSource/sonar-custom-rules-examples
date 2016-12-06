@@ -10,6 +10,7 @@
 
 	<name>SonarQube PHP Custom Rules Example</name>
 	<description>PHP Custom Rules Example for SonarQube</description>
+	<inceptionYear>2016</inceptionYear>
 
 	<dependencies>
 		<dependency>

@@ -10,6 +10,7 @@
 
 	<name>SonarQube JavaScript Custom Rules Example</name>
 	<description>JavaScript Custom Rules Example for SonarQube</description>
+	<inceptionYear>2016</inceptionYear>
 
 	<properties>
 		<javascript.version>2.18.0.3454</javascript.version>
