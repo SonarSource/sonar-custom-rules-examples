@@ -24,7 +24,7 @@
 			<groupId>org.sonarsource.php</groupId>
 			<artifactId>sonar-php-plugin</artifactId>
 			<type>sonar-plugin</type>
-			<version>2.9.0.1664</version>
+			<version>2.9.2.1744</version>
 			<scope>provided</scope>
 		</dependency>
 

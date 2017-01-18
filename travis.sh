@@ -22,7 +22,7 @@ mvn $MAVEN_CMD
 cd ..
 
 cd cobol-custom-rules
-wget https://sonarsource.bintray.com/CommercialDistribution/sonar-cobol-plugin/sonar-cobol-plugin-3.3.0.1589.jar
-mv sonar-cobol-plugin-3.3.0.1589.jar ./lib/sonar-cobol-plugin-3.3.0.1589.jar
+wget https://sonarsource.bintray.com/CommercialDistribution/sonar-cobol-plugin/sonar-cobol-plugin-3.3.1.1636.jar
+mv sonar-cobol-plugin-3.3.1.1636.jar ./lib/sonar-cobol-plugin-3.3.1.1636.jar
 mvn $MAVEN_CMD
 cd ..
