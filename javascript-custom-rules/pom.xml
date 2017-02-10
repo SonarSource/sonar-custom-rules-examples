@@ -15,7 +15,6 @@
 	<properties>
 		<javascript.version>2.19.0.3866</javascript.version>
 	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.sonarsource.sonarqube</groupId>
@@ -26,8 +25,7 @@
 
 		<dependency>
 			<groupId>org.sonarsource.javascript</groupId>
-			<artifactId>sonar-javascript-plugin</artifactId>
-			<type>sonar-plugin</type>
+			<artifactId>javascript-frontend</artifactId>
 			<version>${javascript.version}</version>
 			<scope>provided</scope>
 		</dependency>
