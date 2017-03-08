@@ -15,3 +15,7 @@ cache:
 
 notifications:
   email: false
+  webhooks:
+    urls:
+      - secure: "Rfoalk7uP2jMXD6P1xOG6z6J5AmK3/GeqIh9k2nMQFeCAMuxuv8Kv3ZWQ5lyz2ueP9fW37/JXWamsS31KVCzBbyAVx3hK0mZ9PpjvVnJ2B//jhwuYk/Zh4CluiWhN9vVOxcq5+IXcUi08+olKR0Bh3NY6ZqRQ/EmuWZ11JcgtjHCTqcBu4HLEdmxbYzzATNezYt3Yj98UDm9OUK8tOCbAPM0GCTJHbqp0SOS56G1prOSdFxnegOZktA8Ui3kTNSB7pyC1nXk7wqvsZLN5U/0UQ06OD76CaSVxWQPMOYczXrGJZ5KyOEkjFzV5sGfSdx7uaOPKBetS0Y4d2rsiNZxPyo47/cV04nk7jaAYoBVHBdTSlli++JDJimEQ1a6UikUNR4VQvTFuAWN4V7QAKYvfAA/cconba7thaq6LCOsJMA1Z92uMPsX7XMzu7gIT6kBi6AejF2nmLWruoEWswM2WWYQBqmMeZUX1zSabEdvhhKa/b8gaET/KOUHp/9pThaIJ8+CyN+cyvYbfiKybsEiVMlJ6XPwmOd6jyC7A9czWVKToo1fg4OGnD3L7yjD/Mep+uYR7nkckz7i+1WU+kR1PPut+GzWdoxqXMS3izdvig61TnjnlaV3C7rCUs7ZiSulbcpSNgYDmMTzKMBmS4SzxZLt7nYFxHplNAgjppCcUBY="
+    on_start: always
