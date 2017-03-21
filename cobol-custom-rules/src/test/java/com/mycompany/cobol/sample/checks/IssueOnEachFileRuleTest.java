@@ -24,12 +24,13 @@ import org.junit.Test;
 import static com.sonarsource.cobol.testing.checks.CheckTestingUtils.analyze;
 import static com.sonarsource.cobol.testing.checks.CheckTestingUtils.assertOnlyOneViolation;
 
-public class SampleCheckTest {
+public class IssueOnEachFileRuleTest {
 
   @Test
   public void testVisitNode() {
-    analyze("/checks/SRC/SampleCheckTest.cobol", new SampleCheck());
-    assertOnlyOneViolation().atLine(5).withMessage("Violation here !");
+    IssueOnEachFileRule check = new IssueOnEachFileRule();
+    analyze("/checks/SRC/SampleCheckTest.cobol", check);
+    assertOnlyOneViolation().atLine(5).withMessage("Issue here !");
   }
 
 }

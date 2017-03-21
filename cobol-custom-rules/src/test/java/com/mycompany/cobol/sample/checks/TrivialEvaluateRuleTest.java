@@ -12,18 +12,20 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.sonar.squid.api.SourceFile;
 
-public class ForbiddenCallCheckTest {
+public class TrivialEvaluateRuleTest {
 
   @Rule
   public CheckMessagesVerifierRule checkMessagesVerifier = new CheckMessagesVerifierRule();
 
   @Test
   public void testVisitNode() {
-    ForbiddenCallCheck check = new ForbiddenCallCheck();
-    SourceFile file = CobolAstScanner.scanSingleFile(new File("src/test/resources/checks/SRC/ForbiddenCall.cbl"), check);
+    TrivialEvaluateRule check = new TrivialEvaluateRule();
+    SourceFile file = CobolAstScanner.scanSingleFile(
+      new File("src/test/resources/checks/SRC/TrivialEvaluate.cbl"),
+      check);
     checkMessagesVerifier.verify(file.getCheckMessages())
-      .next().atLine(4).withMessage("CALL to this program are forbidden.")
-      .next().atLine(5);
+      .next().atLine(4)
+      .next().atLine(9);
   }
 
 }

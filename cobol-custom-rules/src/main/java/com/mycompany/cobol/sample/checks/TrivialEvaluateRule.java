@@ -5,13 +5,15 @@ import com.sonarsource.cobol.api.ast.CobolAstCheck;
 import java.util.List;
 import org.sonar.check.Priority;
 import org.sonar.check.Rule;
+import org.sonar.squidbridge.annotations.SqaleConstantRemediation;
 
 @Rule(
+  key = "TrivialEvaluate",
   name = "EVALUATE statements should have several WHEN clauses",
-  description = "IF an <code>EVALUATE</code> statement has only one <code>WHEN</code> and possibly "
-    + "one <code>WHEN OTHER</code> then it should probably be changed to an <code>IF</code> statement.",
-  priority = Priority.MINOR)
-public class TrivialEvaluateCheck extends CobolAstCheck {
+  priority = Priority.MINOR,
+  tags = {"bad-practice"})
+@SqaleConstantRemediation("5min")
+public class TrivialEvaluateRule extends CobolAstCheck {
 
   @Override
   public void init() {

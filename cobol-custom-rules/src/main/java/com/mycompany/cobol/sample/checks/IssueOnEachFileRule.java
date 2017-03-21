@@ -24,25 +24,27 @@ import com.sonarsource.cobol.api.ast.CobolAstCheck;
 import org.sonar.check.Priority;
 import org.sonar.check.Rule;
 import org.sonar.check.RuleProperty;
+import org.sonar.squidbridge.annotations.SqaleConstantRemediation;
 
 @Rule(
-    name = "Sample check",
-    description = "This basic sample check creates a violation on each source file. " +
-        "The line of the violation can be customized thanks to the \"violationLineNumber\" parameter.",
-    priority = Priority.INFO)
-public class SampleCheck extends CobolAstCheck {
+  key = "IssueOnEachFile",
+  name = "Issue on Each File",
+  priority = Priority.MAJOR,
+  tags = {"security"})
+@SqaleConstantRemediation("5min")
+public class IssueOnEachFileRule extends CobolAstCheck {
 
   private static final int PARAMETER_DEFAULT_VALUE = 5;
 
   @RuleProperty(
-    key = "violationLineNumber",
-    description = "Line of the code that the violation will be attached to.",
+    key = "issueLineNumber",
+    description = "Line of the code that the issue will be attached to.",
     defaultValue = "" + PARAMETER_DEFAULT_VALUE)
   private int violationLineNumber = PARAMETER_DEFAULT_VALUE;
 
   @Override
   public void visitFile(AstNode astNode) {
-    log("Violation here !", violationLineNumber);
+    log("Issue here !", violationLineNumber);
   }
 
 }
