@@ -20,7 +20,7 @@
 package org.sonar.samples.java;
 
 import java.util.Arrays;
-
+import java.util.List;
 import org.sonar.plugins.java.api.CheckRegistrar;
 import org.sonar.plugins.java.api.JavaCheck;
 import org.sonar.samples.java.checks.AvoidAnnotationRule;
@@ -34,7 +34,7 @@ import org.sonar.samples.java.checks.SpringControllerRequestMappingEntityRule;
 import org.sonarsource.api.sonarlint.SonarLintSide;
 
 /**
- * Provide the "checks" (implementations of rules) classes that are gonna be executed during
+ * Provide the "checks" (implementations of rules) classes that are going be executed during
  * source code analysis.
  *
  * This class is a batch extension by implementing the {@link org.sonar.plugins.java.api.CheckRegistrar} interface.
@@ -48,29 +48,20 @@ public class MyJavaFileCheckRegistrar implements CheckRegistrar {
   @Override
   public void register(RegistrarContext registrarContext) {
     // Call to registerClassesForRepository to associate the classes with the correct repository key
-    registrarContext.registerClassesForRepository(MyJavaRulesDefinition.REPOSITORY_KEY, Arrays.asList(checkClasses()), Arrays.asList(testCheckClasses()));
+    registrarContext.registerClassesForRepository(MyJavaRulesDefinition.REPOSITORY_KEY, checkClasses(), testCheckClasses());
   }
 
   /**
-   * Lists all the checks provided by the plugin
+   * Lists all the main checks provided by the plugin
    */
-  public static Class<? extends JavaCheck>[] checkClasses() {
-    return new Class[] {
-      SpringControllerRequestMappingEntityRule.class,
-      AvoidAnnotationRule.class,
-      AvoidBrandInMethodNamesRule.class,
-      AvoidMethodDeclarationRule.class,
-      AvoidSuperClassRule.class,
-      AvoidUnmodifiableListRule.class,
-      MyCustomSubscriptionRule.class,
-      SecurityAnnotationMandatoryRule.class
-    };
+  public static List<Class<? extends JavaCheck>> checkClasses() {
+    return RulesList.getJavaChecks();
   }
 
   /**
    * Lists all the test checks provided by the plugin
    */
-  public static Class<? extends JavaCheck>[] testCheckClasses() {
-    return new Class[] {};
+  public static List<Class<? extends JavaCheck>> testCheckClasses() {
+    return RulesList.getJavaTestChecks();
   }
 }
