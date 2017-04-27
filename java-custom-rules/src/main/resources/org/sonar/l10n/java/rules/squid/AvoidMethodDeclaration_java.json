@@ -1,12 +1,13 @@
 {
-  "title": "Security Annotation Mandatory",
+  "title": "Avoid method declarations",
+  "type": "BUG",
   "status": "ready",
   "remediation": {
     "func": "Constant\/Issue",
-    "constantCost": "5min"
+    "constantCost": "10min"
   },
   "tags": [
-    "security"
+    "pitfall"
   ],
   "defaultSeverity": "Minor"
 }

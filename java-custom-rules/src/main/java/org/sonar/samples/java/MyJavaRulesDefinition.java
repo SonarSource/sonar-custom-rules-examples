@@ -19,27 +19,35 @@
  */
 package org.sonar.samples.java;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.Locale;
-
-import javax.annotation.Nullable;
-
-import org.sonar.api.rule.RuleStatus;
-import org.sonar.api.server.debt.DebtRemediationFunction;
-import org.sonar.api.server.rule.RulesDefinition;
-import org.sonar.plugins.java.Java;
-import org.sonar.squidbridge.annotations.AnnotationBasedRulesDefinition;
-
-import com.google.common.base.Charsets;
+import com.google.common.annotations.VisibleForTesting;
+import com.google.common.collect.Iterables;
 import com.google.common.io.Resources;
 import com.google.gson.Gson;
+import java.io.IOException;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.Locale;
+import javax.annotation.Nullable;
+import org.apache.commons.lang.StringUtils;
+import org.sonar.api.rule.RuleStatus;
+import org.sonar.api.rules.RuleType;
+import org.sonar.api.server.debt.DebtRemediationFunction;
+import org.sonar.api.server.rule.RulesDefinition;
+import org.sonar.api.server.rule.RulesDefinitionAnnotationLoader;
+import org.sonar.api.utils.AnnotationUtils;
+import org.sonar.check.Cardinality;
+import org.sonar.plugins.java.Java;
+import org.sonar.squidbridge.annotations.RuleTemplate;
 
 /**
  * Declare rule metadata in server repository of rules. 
  * That allows to list the rules in the page "Rules".
  */
 public class MyJavaRulesDefinition implements RulesDefinition {
+
+  // don't change that because the path is hard coded in CheckVerifier
+  private static final String RESOURCE_BASE_PATH = "/org/sonar/l10n/java/rules/squid";
 
   public static final String REPOSITORY_KEY = "mycompany-java";
 
@@ -51,57 +59,88 @@ public class MyJavaRulesDefinition implements RulesDefinition {
       .createRepository(REPOSITORY_KEY, Java.KEY)
       .setName("MyCompany Custom Repository");
 
-    new AnnotationBasedRulesDefinition(repository, Java.KEY)
-      .addRuleClasses(/* don't fail if no SQALE annotations */ false, RulesList.getChecks());
+    List<Class> checks = RulesList.getChecks();
+    new RulesDefinitionAnnotationLoader().load(repository, Iterables.toArray(checks, Class.class));
 
-    for (NewRule rule : repository.rules()) {
-      String metadataKey = rule.key();
-      // Setting internal key is essential for rule templates (see SONAR-6162), and it is not done by AnnotationBasedRulesDefinition from
-      // sslr-squid-bridge version 2.5.1:
-      rule.setInternalKey(metadataKey);
-      rule.setHtmlDescription(readRuleDefinitionResource(metadataKey + ".html"));
-      addMetadata(rule, metadataKey);
+    for (Class ruleClass : checks) {
+      newRule(ruleClass, repository);
     }
-
     repository.done();
   }
 
-  @Nullable
-  private static String readRuleDefinitionResource(String fileName) {
-    URL resource = MyJavaRulesDefinition.class.getResource("/org/sonar/l10n/java/rules/mycompany/" + fileName);
-    if (resource == null) {
-      return null;
+  @VisibleForTesting
+  protected void newRule(Class<?> ruleClass, NewRepository repository) {
+
+    org.sonar.check.Rule ruleAnnotation = AnnotationUtils.getAnnotation(ruleClass, org.sonar.check.Rule.class);
+    if (ruleAnnotation == null) {
+      throw new IllegalArgumentException("No Rule annotation was found on " + ruleClass);
     }
+    String ruleKey = ruleAnnotation.key();
+    if (StringUtils.isEmpty(ruleKey)) {
+      throw new IllegalArgumentException("No key is defined in Rule annotation of " + ruleClass);
+    }
+    NewRule rule = repository.rule(ruleKey);
+    if (rule == null) {
+      throw new IllegalStateException("No rule was created for " + ruleClass + " in " + repository.key());
+    }
+    ruleMetadata(ruleClass, rule);
+
+    rule.setTemplate(AnnotationUtils.getAnnotation(ruleClass, RuleTemplate.class) != null);
+    if (ruleAnnotation.cardinality() == Cardinality.MULTIPLE) {
+      throw new IllegalArgumentException("Cardinality is not supported, use the RuleTemplate annotation instead for " + ruleClass);
+    }
+  }
+
+  private String ruleMetadata(Class<?> ruleClass, NewRule rule) {
+    String metadataKey = rule.key();
+    org.sonar.java.RspecKey rspecKeyAnnotation = AnnotationUtils.getAnnotation(ruleClass, org.sonar.java.RspecKey.class);
+    if (rspecKeyAnnotation != null) {
+      metadataKey = rspecKeyAnnotation.value();
+      rule.setInternalKey(metadataKey);
+    }
+    addHtmlDescription(rule, metadataKey);
+    addMetadata(rule, metadataKey);
+    return metadataKey;
+  }
+
+  private void addMetadata(NewRule rule, String metadataKey) {
+    URL resource = MyJavaRulesDefinition.class.getResource(RESOURCE_BASE_PATH + "/" + metadataKey + "_java.json");
+    if (resource != null) {
+      RuleMetatada metatada = gson.fromJson(readResource(resource), RuleMetatada.class);
+      rule.setSeverity(metatada.defaultSeverity.toUpperCase(Locale.US));
+      rule.setName(metatada.title);
+      rule.addTags(metatada.tags);
+      rule.setType(RuleType.valueOf(metatada.type));
+      rule.setStatus(RuleStatus.valueOf(metatada.status.toUpperCase(Locale.US)));
+      if (metatada.remediation != null) {
+        rule.setDebtRemediationFunction(metatada.remediation.remediationFunction(rule.debtRemediationFunctions()));
+        rule.setGapDescription(metatada.remediation.linearDesc);
+      }
+    }
+  }
+
+  private static void addHtmlDescription(NewRule rule, String metadataKey) {
+    URL resource = MyJavaRulesDefinition.class.getResource(RESOURCE_BASE_PATH + "/" + metadataKey + "_java.html");
+    if (resource != null) {
+      rule.setHtmlDescription(readResource(resource));
+    }
+  }
+
+  private static String readResource(URL resource) {
     try {
-      return Resources.toString(resource, Charsets.UTF_8);
+      return Resources.toString(resource, StandardCharsets.UTF_8);
     } catch (IOException e) {
       throw new IllegalStateException("Failed to read: " + resource, e);
     }
   }
 
-  private void addMetadata(NewRule rule, String metadataKey) {
-    String json = readRuleDefinitionResource(metadataKey + ".json");
-    if (json != null) {
-      RuleMetadata metadata = gson.fromJson(json, RuleMetadata.class);
-      rule.setSeverity(metadata.defaultSeverity.toUpperCase(Locale.US));
-      rule.setName(metadata.title);
-      rule.setTags(metadata.tags);
-      rule.setStatus(RuleStatus.valueOf(metadata.status.toUpperCase(Locale.US)));
-
-      if (metadata.remediation != null) {
-        // metadata.remediation is null for template rules
-        rule.setDebtRemediationFunction(metadata.remediation.remediationFunction(rule.debtRemediationFunctions()));
-        rule.setGapDescription(metadata.remediation.linearDesc);
-      }
-    }
-  }
-
-  private static class RuleMetadata {
+  private static class RuleMetatada {
     String title;
     String status;
     @Nullable
     Remediation remediation;
 
+    String type;
     String[] tags;
     String defaultSeverity;
   }
@@ -113,7 +152,7 @@ public class MyJavaRulesDefinition implements RulesDefinition {
     String linearOffset;
     String linearFactor;
 
-    private DebtRemediationFunction remediationFunction(DebtRemediationFunctions drf) {
+    public DebtRemediationFunction remediationFunction(DebtRemediationFunctions drf) {
       if (func.startsWith("Constant")) {
         return drf.constantPerIssue(constantCost.replace("mn", "min"));
       }
@@ -123,4 +162,5 @@ public class MyJavaRulesDefinition implements RulesDefinition {
       return drf.linearWithOffset(linearFactor.replace("mn", "min"), linearOffset.replace("mn", "min"));
     }
   }
+
 }

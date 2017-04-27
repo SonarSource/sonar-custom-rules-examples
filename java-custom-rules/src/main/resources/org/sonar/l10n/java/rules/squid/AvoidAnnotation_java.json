@@ -1,13 +1,13 @@
 {
-  "title": "Avoid using Object annotated with @Entity as param of @RequestMapping used in @Controller context",
+  "title": "Title of AvoidAnnotation",
+  "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
     "func": "Constant\/Issue",
     "constantCost": "5min"
   },
   "tags": [
-    "spring",
-    "security"
+    "pitfall"
   ],
   "defaultSeverity": "Minor"
 }

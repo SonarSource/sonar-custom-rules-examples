@@ -1,12 +1,12 @@
 {
-  "title": "Avoid Brand in Method Names",
+  "title": "Security Annotation Mandatory",
+  "type": "VULNERABILITY",
   "status": "ready",
   "remediation": {
     "func": "Constant\/Issue",
-    "constantCost": "1min"
+    "constantCost": "5min"
   },
   "tags": [
-    "company"
   ],
   "defaultSeverity": "Minor"
 }

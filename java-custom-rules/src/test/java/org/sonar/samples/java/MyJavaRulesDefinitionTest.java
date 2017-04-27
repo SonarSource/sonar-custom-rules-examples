@@ -62,7 +62,7 @@ public class MyJavaRulesDefinitionTest {
     assertThat(rule).isNotNull();
     assertThat(rule.name()).isEqualTo("Title of AvoidAnnotation");
     assertThat(rule.debtRemediationFunction().type()).isEqualTo(Type.CONSTANT_ISSUE);
-    assertThat(rule.type()).isEqualTo(RuleType.BUG);
+    assertThat(rule.type()).isEqualTo(RuleType.CODE_SMELL);
   }
 
   private void assertAllRuleParametersHaveDescription(Repository repository) {

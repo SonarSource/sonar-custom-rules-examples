@@ -1,12 +1,13 @@
 {
-  "title": "Avoid usage of UnmodifiableList",
+  "title": "Avoid Brand in Method Names",
+  "type": "BUG",
   "status": "ready",
   "remediation": {
     "func": "Constant\/Issue",
-    "constantCost": "5min"
+    "constantCost": "1min"
   },
   "tags": [
-    "example"
+    "company"
   ],
   "defaultSeverity": "Minor"
 }
