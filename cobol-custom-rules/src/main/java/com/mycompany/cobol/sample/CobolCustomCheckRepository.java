@@ -19,15 +19,25 @@
  */
 package com.mycompany.cobol.sample;
 
-import com.mycompany.cobol.sample.checks.SampleCheckRepository;
-import org.sonar.api.Plugin;
+import com.mycompany.cobol.sample.checks.ForbiddenCallRule;
+import com.mycompany.cobol.sample.checks.IssueOnEachFileRule;
+import com.mycompany.cobol.sample.checks.TrivialEvaluateRule;
+import com.sonarsource.cobol.api.ast.CobolAstCheckRepository;
+import java.util.Arrays;
+import java.util.Collection;
 
-public class SamplePlugin implements Plugin {
+/**
+ * Extension point to list all your custom Cobol rules.
+ */
+public class CobolCustomCheckRepository extends CobolAstCheckRepository {
 
+  @SuppressWarnings("unchecked")
   @Override
-  public void define(Context context) {
-    // custom checks
-    context.addExtension(SampleCheckRepository.class);
+  public Collection getCheckClasses() {
+    return Arrays.<Class>asList(
+      ForbiddenCallRule.class,
+      IssueOnEachFileRule.class,
+      TrivialEvaluateRule.class);
   }
 
 }

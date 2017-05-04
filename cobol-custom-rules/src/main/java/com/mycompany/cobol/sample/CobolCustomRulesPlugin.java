@@ -17,21 +17,16 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package com.mycompany.cobol.sample.checks;
+package com.mycompany.cobol.sample;
 
-import com.sonarsource.cobol.api.ast.CobolAstCheckRepository;
-import java.util.Arrays;
-import java.util.Collection;
+import org.sonar.api.Plugin;
 
-public class SampleCheckRepository extends CobolAstCheckRepository {
+public class CobolCustomRulesPlugin implements Plugin {
 
-  @SuppressWarnings("unchecked")
   @Override
-  public Collection getCheckClasses() {
-    return Arrays.<Class>asList(
-      ForbiddenCallRule.class,
-      IssueOnEachFileRule.class,
-      TrivialEvaluateRule.class);
+  public void define(Context context) {
+    // custom checks
+    context.addExtension(CobolCustomCheckRepository.class);
   }
 
 }
