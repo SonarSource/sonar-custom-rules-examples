@@ -21,6 +21,9 @@ package com.mycompany.cobol.sample;
 
 import org.sonar.api.Plugin;
 
+/**
+ * Main entry point of your SQ Plugin defining all extension points implemented.
+ */
 public class CobolCustomRulesPlugin implements Plugin {
 
   @Override
