@@ -19,9 +19,7 @@
  */
 package org.sonar.samples.javascript.checks;
 
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
-import java.util.List;
 import java.util.Set;
 import org.sonar.api.server.rule.RulesDefinition;
 import org.sonar.check.Priority;
@@ -56,8 +54,8 @@ public class OtherForbiddenFunctionUseCheck extends SubscriptionVisitorCheck {
   private static final Set<String> FORBIDDEN_FUNCTIONS = ImmutableSet.of("baz");
 
   @Override
-  public List<Kind> nodesToVisit() {
-    return ImmutableList.of(Kind.CALL_EXPRESSION);
+  public Set<Kind> nodesToVisit() {
+    return ImmutableSet.of(Kind.CALL_EXPRESSION);
   }
 
   @Override
