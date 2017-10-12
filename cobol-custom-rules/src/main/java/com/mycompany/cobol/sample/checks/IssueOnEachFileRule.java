@@ -44,7 +44,7 @@ public class IssueOnEachFileRule extends CobolAstCheck {
 
   @Override
   public void visitFile(AstNode astNode) {
-    log("Issue here !", violationLineNumber);
+    reportIssue("Issue here !").atLine(violationLineNumber);
   }
 
 }
