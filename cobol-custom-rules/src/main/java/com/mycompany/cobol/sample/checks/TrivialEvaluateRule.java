@@ -24,7 +24,7 @@ public class TrivialEvaluateRule extends CobolAstCheck {
   public void visitNode(AstNode evaluateNode) {
     List<AstNode> whenClauses = evaluateNode.getChildren(getCobolGrammar().evaluateWhen);
     if (whenClauses.size() == 1) {
-      log("Change this EVALUATE into an IF statement.", evaluateNode);
+      reportIssue("Change this EVALUATE into an IF statement.").on(evaluateNode.getToken());
     }
   }
 

@@ -2,6 +2,7 @@
        PROCEDURE DIVISION.
 
          EVALUATE X      *> Noncompliant {{Change this EVALUATE into an IF statement.}}
+       *>^^^^^^^^
            WHEN 1
              DISPLAY 1
          END-EVALUATE.

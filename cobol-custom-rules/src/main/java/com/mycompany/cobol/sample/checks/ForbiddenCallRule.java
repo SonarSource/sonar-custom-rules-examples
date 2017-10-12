@@ -27,7 +27,7 @@ public class ForbiddenCallRule extends CobolAstCheck {
   public void visitNode(AstNode callStatementNode) {
     AstNode calledProgramNode = callStatementNode.getFirstChild(getCobolGrammar().literal);
     if (calledProgramNode != null && calledProgramNode.getTokenValue().indexOf("FORBIDDEN") > -1) {
-      log("CALL to this program are forbidden.", calledProgramNode);
+      reportIssue("CALL to this program are forbidden.").on(calledProgramNode);
     }
   }
 
