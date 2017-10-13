@@ -1,7 +1,7 @@
 package com.mycompany.cobol.sample.checks;
 
 import com.sonar.sslr.api.AstNode;
-import com.sonarsource.cobol.api.ast.CobolAstCheck;
+import com.sonarsource.cobol.api.ast.CobolCheck;
 import java.util.List;
 import org.sonar.check.Priority;
 import org.sonar.check.Rule;
@@ -11,7 +11,7 @@ import org.sonar.check.Rule;
   name = "EVALUATE statements should have several WHEN clauses",
   priority = Priority.MINOR,
   tags = {"bad-practice"})
-public class TrivialEvaluateRule extends CobolAstCheck {
+public class TrivialEvaluateRule extends CobolCheck {
 
   @Override
   public void init() {

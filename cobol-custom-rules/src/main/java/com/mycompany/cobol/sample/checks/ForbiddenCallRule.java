@@ -1,7 +1,7 @@
 package com.mycompany.cobol.sample.checks;
 
 import com.sonar.sslr.api.AstNode;
-import com.sonarsource.cobol.api.ast.CobolAstCheck;
+import com.sonarsource.cobol.api.ast.CobolCheck;
 import org.sonar.check.Priority;
 import org.sonar.check.Rule;
 
@@ -14,7 +14,7 @@ import org.sonar.check.Rule;
   name = "CALL statements should not use internal programs",
   priority = Priority.CRITICAL,
   tags = {"bug"})
-public class ForbiddenCallRule extends CobolAstCheck {
+public class ForbiddenCallRule extends CobolCheck {
 
   @Override
   public void init() {
