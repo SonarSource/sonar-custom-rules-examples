@@ -24,14 +24,12 @@ import com.sonarsource.cobol.api.ast.CobolAstCheck;
 import org.sonar.check.Priority;
 import org.sonar.check.Rule;
 import org.sonar.check.RuleProperty;
-import org.sonar.squidbridge.annotations.SqaleConstantRemediation;
 
 @Rule(
   key = "IssueOnEachFile",
   name = "Issue on Each File",
   priority = Priority.MAJOR,
   tags = {"security"})
-@SqaleConstantRemediation("5min")
 public class IssueOnEachFileRule extends CobolAstCheck {
 
   private static final int PARAMETER_DEFAULT_VALUE = 5;
