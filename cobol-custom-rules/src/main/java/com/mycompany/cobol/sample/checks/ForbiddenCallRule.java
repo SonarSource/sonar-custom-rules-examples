@@ -4,7 +4,6 @@ import com.sonar.sslr.api.AstNode;
 import com.sonarsource.cobol.api.ast.CobolAstCheck;
 import org.sonar.check.Priority;
 import org.sonar.check.Rule;
-import org.sonar.squidbridge.annotations.SqaleConstantRemediation;
 
 /**
  * This is an example to demonstrate how to write a custom rule which raises issues on
@@ -15,7 +14,6 @@ import org.sonar.squidbridge.annotations.SqaleConstantRemediation;
   name = "CALL statements should not use internal programs",
   priority = Priority.CRITICAL,
   tags = {"bug"})
-@SqaleConstantRemediation("5min")
 public class ForbiddenCallRule extends CobolAstCheck {
 
   @Override
