@@ -20,7 +20,7 @@
 package com.mycompany.cobol.sample.checks;
 
 import com.sonar.sslr.api.AstNode;
-import com.sonarsource.cobol.api.ast.CobolAstCheck;
+import com.sonarsource.cobol.api.ast.CobolCheck;
 import org.sonar.check.Priority;
 import org.sonar.check.Rule;
 import org.sonar.check.RuleProperty;
@@ -30,7 +30,7 @@ import org.sonar.check.RuleProperty;
   name = "Issue on Each File",
   priority = Priority.MAJOR,
   tags = {"security"})
-public class IssueOnEachFileRule extends CobolAstCheck {
+public class IssueOnEachFileRule extends CobolCheck {
 
   private static final int PARAMETER_DEFAULT_VALUE = 5;
 
