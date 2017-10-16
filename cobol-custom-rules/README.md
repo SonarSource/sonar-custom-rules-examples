@@ -1,6 +1,6 @@
 This example demonstrates how to write **Custom Rules** for the SonarQube COBOL analyzer.
 
-It assumes that the JAR file of the COBOL analyzer (file sonar-cobol-plugin-3.3.0.1589.jar)
+It assumes that the JAR file of the COBOL analyzer (file sonar-cobol-plugin-4.0.0.2525.jar)
 is available in the "lib" directory.
 You can download the JAR file of the COBOL analyzer from the [SonarSource website](http://redirect.sonarsource.com/plugins/cobol.html).
 
