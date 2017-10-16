@@ -1,12 +1,12 @@
        IDENTIFICATION DIVISION.
        PROCEDURE DIVISION.
 
-         EVALUATE X
+         EVALUATE X      *> Noncompliant {{Change this EVALUATE into an IF statement.}}
            WHEN 1
              DISPLAY 1
          END-EVALUATE.
 
-         EVALUATE X
+         EVALUATE X      *> Noncompliant
            WHEN 1
              DISPLAY 1
            WHEN OTHER
