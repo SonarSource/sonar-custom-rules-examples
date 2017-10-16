@@ -22,7 +22,7 @@
     <version.harmcrest>1.1</version.harmcrest>
     <version.junit>4.11</version.junit>
     <version.logback>1.1.7</version.logback>
-    <version.sonar-cobol-plugin>3.4.0.1932</version.sonar-cobol-plugin>
+    <version.sonar-cobol-plugin>4.0.0.2525</version.sonar-cobol-plugin>
     <version.sonar-plugin-api>5.6</version.sonar-plugin-api>
   </properties>
 

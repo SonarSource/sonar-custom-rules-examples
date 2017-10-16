@@ -19,18 +19,18 @@
  */
 package com.mycompany.cobol.sample.checks;
 
+import com.sonarsource.cobol.testing.checks.CobolCheckVerifier;
+import java.io.File;
 import org.junit.Test;
-
-import static com.sonarsource.cobol.testing.checks.CheckTestingUtils.analyze;
-import static com.sonarsource.cobol.testing.checks.CheckTestingUtils.assertOnlyOneViolation;
 
 public class IssueOnEachFileRuleTest {
 
   @Test
   public void testVisitNode() {
     IssueOnEachFileRule check = new IssueOnEachFileRule();
-    analyze("/checks/SRC/SampleCheckTest.cobol", check);
-    assertOnlyOneViolation().atLine(5).withMessage("Issue here !");
+    CobolCheckVerifier.verify(
+      new File("src/test/resources/checks/SRC/SampleCheckTest.cobol"),
+      check);
   }
 
 }
