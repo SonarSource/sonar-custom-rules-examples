@@ -23,7 +23,6 @@ import com.mycompany.cobol.sample.checks.ForbiddenCallRule;
 import com.mycompany.cobol.sample.checks.IssueOnEachFileRule;
 import com.mycompany.cobol.sample.checks.TrivialEvaluateRule;
 import com.sonarsource.cobol.api.ast.CobolCheckRepository;
-import com.sonarsource.cobol.api.ast.RulesDefinitionExtension;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,17 +32,25 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import org.sonar.api.server.rule.RulesDefinition.NewExtendedRepository;
+import org.sonar.api.server.rule.RulesDefinition;
 import org.sonar.api.server.rule.RulesDefinitionAnnotationLoader;
 
 /**
  * Extension point to list all your custom Cobol rules.
  */
-public class CobolCustomCheckRepository implements CobolCheckRepository, RulesDefinitionExtension {
+public class CobolCustomCheckRepository implements CobolCheckRepository, RulesDefinition {
+
+  // Change key and name to reflect your company rule repository.
+  // Don't use "cobol" key, it's the core repository.
+  private static final String REPOSITORY_KEY = "my-custom-cobol";
+  private static final String REPOSITORY_NAME = "My Custom Cobol Analyzer";
+
+  // Must be "cobol"
+  private static final String REPOSITORY_LANGUAGE = "cobol";
 
   @Override
   public String getRepositoryKey() {
-    return "cobol";
+    return REPOSITORY_KEY;
   }
 
   @Override
@@ -55,7 +62,10 @@ public class CobolCustomCheckRepository implements CobolCheckRepository, RulesDe
   }
 
   @Override
-  public void extend(NewExtendedRepository repository) {
+  public void define(Context context) {
+    // Create the custom rule repository
+    NewRepository repository = context.createRepository(REPOSITORY_KEY, REPOSITORY_LANGUAGE).setName(REPOSITORY_NAME);
+
     // Load rule meta data from annotations
     RulesDefinitionAnnotationLoader annotationLoader = new RulesDefinitionAnnotationLoader();
 
@@ -66,6 +76,7 @@ public class CobolCustomCheckRepository implements CobolCheckRepository, RulesDe
     // Optionally override html description from annotation with content from html files
     repository.rules().forEach(rule -> rule.setHtmlDescription(loadResource("/org/sonar/l10n/cobol/rules/cobol/" + rule.key() + ".html")));
 
+
     // Optionally define remediation costs
     Map<String,String> remediationCosts = new HashMap<>();
     remediationCosts.put("ForbiddenCall", "5min");
@@ -73,6 +84,9 @@ public class CobolCustomCheckRepository implements CobolCheckRepository, RulesDe
     remediationCosts.put("TrivialEvaluate", "5min");
     repository.rules().forEach(rule -> rule.setDebtRemediationFunction(
       rule.debtRemediationFunctions().constantPerIssue(remediationCosts.get(rule.key()))));
+
+    // Save changes
+    repository.done();
   }
 
   private String loadResource(String path) {
