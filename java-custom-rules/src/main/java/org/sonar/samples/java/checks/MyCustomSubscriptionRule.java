@@ -19,16 +19,14 @@
  */
 package org.sonar.samples.java.checks;
 
+import com.google.common.collect.ImmutableList;
 import java.util.List;
-
 import org.sonar.check.Rule;
 import org.sonar.plugins.java.api.IssuableSubscriptionVisitor;
 import org.sonar.plugins.java.api.semantic.Symbol.MethodSymbol;
 import org.sonar.plugins.java.api.semantic.Type;
 import org.sonar.plugins.java.api.tree.MethodTree;
 import org.sonar.plugins.java.api.tree.Tree;
-
-import com.google.common.collect.ImmutableList;
 
 @Rule(key = "AvoidMethodWithSameTypeInArgument")
 /**

@@ -19,14 +19,12 @@
  */
 package org.sonar.samples.java.checks;
 
+import com.google.common.collect.ImmutableList;
 import java.util.List;
-
 import org.sonar.check.Rule;
 import org.sonar.plugins.java.api.IssuableSubscriptionVisitor;
 import org.sonar.plugins.java.api.tree.NewClassTree;
 import org.sonar.plugins.java.api.tree.Tree;
-
-import com.google.common.collect.ImmutableList;
 
 @Rule(key = "AvoidUnmodifiableList")
 public class AvoidUnmodifiableListRule extends IssuableSubscriptionVisitor {

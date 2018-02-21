@@ -20,7 +20,6 @@
 package org.sonar.samples.java.checks;
 
 import java.util.List;
-
 import org.sonar.check.Rule;
 import org.sonar.check.RuleProperty;
 import org.sonar.plugins.java.api.JavaFileScanner;
