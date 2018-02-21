@@ -1,3 +1,3 @@
-This example demonstrates how to write **Custom Rules** for the SonarQube JavaScript Analyzer (aka SonarJS).
+[![Quality Gate](https://sonarcloud.io/dashboard?id=org.sonarsource.samples%3Ajavascript-custom-rules)](https://sonarcloud.io/api/project_badges/measure?project=org.sonarsource.samples%3Ajavascript-custom-rules&metric=alert_status)
 
-It requires to install the **SonarJS** **3.0** on your SonarQube 5.6+
+This example demonstrates how to write **Custom Rules** for SonarJS.

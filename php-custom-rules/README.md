@@ -1,3 +1,3 @@
-This example demonstrates how to write **Custom Rules** for the SonarQube PHP Analyzer.
+[![Quality Gate](https://sonarcloud.io/dashboard?id=org.sonarsource.samples%3Aphp-custom-rules)](https://sonarcloud.io/api/project_badges/measure?project=org.sonarsource.samples%3Aphp-custom-rules&metric=alert_status)
 
-It requires to install the **PHP Plugin** **2.9** on your SonarQube 5.6+
+This example demonstrates how to write **Custom Rules** for SonarPHP.

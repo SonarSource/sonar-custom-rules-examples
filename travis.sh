@@ -1,7 +1,7 @@
 #!/bin/bash
 
 RunMaven() {
-  typeset MAVEN_CMD="mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar -Dsonar.host.url=https://sonarqube.com -Dsonar.login=${SONARQUBE_TOKEN}"
+  typeset MAVEN_CMD="mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${SONARQUBE_TOKEN}"
   typeset RETURN_CODE
 
   echo $MAVEN_CMD
@@ -26,13 +26,13 @@ RunMaven
 cd ..
 
 cd rpg-custom-rules
-wget https://sonarsource.bintray.com/CommercialDistribution/sonar-rpg-plugin/sonar-rpg-plugin-2.0.0.496.jar
-mv sonar-rpg-plugin-2.0.0.496.jar ./lib/sonar-rpg-plugin-2.0.0.496.jar 
+wget https://sonarsource.bintray.com/CommercialDistribution/sonar-rpg-plugin/sonar-rpg-plugin-2.2.0.1005.jar
+mv sonar-rpg-plugin-2.2.0.1005.jar ./lib/sonar-rpg-plugin-2.2.0.1005.jar
 RunMaven
 cd ..
 
 cd cobol-custom-rules
-wget https://sonarsource.bintray.com/CommercialDistribution/sonar-cobol-plugin/sonar-cobol-plugin-4.0.0.2525.jar
-mv sonar-cobol-plugin-4.0.0.2525.jar ./lib/sonar-cobol-plugin-4.0.0.2525.jar
+wget https://sonarsource.bintray.com/CommercialDistribution/sonar-cobol-plugin/sonar-cobol-plugin-4.2.0.2826.jar
+mv sonar-cobol-plugin-4.2.0.2826.jar ./lib/sonar-cobol-plugin-4.2.0.2826.jar
 RunMaven
 cd ..

@@ -14,32 +14,28 @@
   <inceptionYear>2016</inceptionYear>
 
   <properties>
-    <!-- plugin versions -->
-    <version.maven-compiler-plugin>3.6.0</version.maven-compiler-plugin>
-    <version.sonar-packaging-maven-plugin>1.17</version.sonar-packaging-maven-plugin>
-    
-    <!-- JAR versions -->
     <version.harmcrest>1.1</version.harmcrest>
     <version.junit>4.11</version.junit>
     <version.logback>1.1.7</version.logback>
-    <version.sonar-cobol-plugin>4.0.0.2525</version.sonar-cobol-plugin>
-    <version.sonar-plugin-api>5.6</version.sonar-plugin-api>
+
+    <sonar.version>6.7</sonar.version>
+    <sonarcobol.version>4.2.0.2826</sonarcobol.version>
   </properties>
 
   <dependencies>
     <dependency>
       <groupId>org.sonarsource.sonarqube</groupId>
       <artifactId>sonar-plugin-api</artifactId>
-      <version>${version.sonar-plugin-api}</version>
+      <version>${sonar.version}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>com.sonarsource.cobol</groupId>
       <artifactId>sonar-cobol-plugin</artifactId>
-      <version>${version.sonar-cobol-plugin}</version>
+      <version>${sonarcobol.version}</version>
       <scope>system</scope>
       <type>sonar-plugin</type>
-      <systemPath>${basedir}/lib/sonar-cobol-plugin-${version.sonar-cobol-plugin}.jar</systemPath>
+      <systemPath>${basedir}/lib/sonar-cobol-plugin-${sonarcobol.version}.jar</systemPath>
     </dependency>
 
     <!-- For JUnit tests -->
@@ -68,20 +64,20 @@
       <plugin>
         <groupId>org.sonarsource.sonar-packaging-maven-plugin</groupId>
         <artifactId>sonar-packaging-maven-plugin</artifactId>
-        <version>${version.sonar-packaging-maven-plugin}</version>
+        <version>1.17</version>
         <extensions>true</extensions>
         <configuration>
           <pluginKey>cobol-custom</pluginKey>
           <pluginName>COBOL Custom Rules</pluginName>
           <pluginClass>com.mycompany.cobol.sample.CobolCustomRulesPlugin</pluginClass>
           <sonarLintSupported>true</sonarLintSupported>
-          <sonarQubeMinVersion>5.6</sonarQubeMinVersion>
+          <sonarQubeMinVersion>6.7</sonarQubeMinVersion>
           <basePlugin>cobol</basePlugin>
         </configuration>
       </plugin>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>${version.maven-compiler-plugin}</version>
+        <version>3.6.0</version>
         <configuration>
           <source>1.8</source>
           <target>1.8</target>

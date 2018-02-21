@@ -12,10 +12,9 @@
 	<description>RPG Custom Rules Example for SonarQube</description>
 	<inceptionYear>2016</inceptionYear>
 
-	<properties>
-		<sonar.version>5.6</sonar.version>
-		<rpg.plugin.version>2.0.0.496</rpg.plugin.version>
-		<plugin.class>com.sonarsource.rpg.example.MyRpgCustomPlugin</plugin.class>
+	<properties>		
+		<sonar.version>6.7</sonar.version>
+		<sonarrpg.version>2.2.0.1005</sonarrpg.version>
 	</properties>
 
 	<dependencies>
@@ -31,9 +30,9 @@
 			<groupId>com.sonarsource.rpg</groupId>
 			<artifactId>sonar-rpg-plugin</artifactId>
 			<type>sonar-plugin</type>
-			<version>${rpg.plugin.version}</version>
+			<version>${sonarrpg.version}</version>
 			<scope>system</scope>
-			<systemPath>${basedir}/lib/sonar-rpg-plugin-${rpg.plugin.version}.jar</systemPath>
+			<systemPath>${basedir}/lib/sonar-rpg-plugin-${sonarrpg.version}.jar</systemPath>
 		</dependency>
 
 		<dependency>
@@ -61,9 +60,9 @@
 				<configuration>
 					<pluginKey>rpg-custom</pluginKey>
 					<pluginName>RPG Custom Rules</pluginName>
-					<pluginClass>${plugin.class}</pluginClass>
+					<pluginClass>com.sonarsource.rpg.example.MyRpgCustomPlugin</pluginClass>
 					<sonarLintSupported>true</sonarLintSupported>
-					<sonarQubeMinVersion>5.6</sonarQubeMinVersion> <!-- allow to depend on API 6.x but run on LTS -->
+					<sonarQubeMinVersion>6.7</sonarQubeMinVersion>
 					<basePlugin>rpg</basePlugin>
 				</configuration>
 			</plugin>
