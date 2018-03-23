@@ -21,12 +21,17 @@ package org.sonar.samples.php;
 
 
 import com.google.common.collect.ImmutableList;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
+import org.sonar.api.server.rule.RulesDefinitionAnnotationLoader;
 import org.sonar.plugins.php.api.visitors.PHPCustomRulesDefinition;
 import org.sonar.samples.php.checks.ForbiddenFunctionUseCheck;
 import org.sonar.samples.php.checks.OtherForbiddenFunctionUseCheck;
-import org.sonar.squidbridge.annotations.AnnotationBasedRulesDefinition;
 
 /**
  * Extension point to define a PHP rule repository.
@@ -60,8 +65,14 @@ public class PHPRulesDefinition extends PHPCustomRulesDefinition {
 
   @Override
   public void define(Context context) {
-    NewRepository repository = context.createRepository(this.repositoryKey(), "php").setName(repositoryName());
-    (new AnnotationBasedRulesDefinition(repository, "php")).addRuleClasses(false, checkClasses());
+    NewRepository repository = context.createRepository(repositoryKey(), "php").setName(repositoryName());
+
+    // Load rule meta data from annotations
+    RulesDefinitionAnnotationLoader annotationLoader = new RulesDefinitionAnnotationLoader();
+    checkClasses().forEach(ruleClass -> annotationLoader.load(repository, ruleClass));
+
+    // Optionally override html description from annotation with content from html files
+    repository.rules().forEach(rule -> rule.setHtmlDescription(loadResource("/org/sonar/l10n/php/rules/custom/" + rule.key() + ".html")));
 
     // Optionally define remediation costs
     Map<String, String> remediationCosts = new HashMap<>();
@@ -71,5 +82,22 @@ public class PHPRulesDefinition extends PHPCustomRulesDefinition {
       rule.debtRemediationFunctions().constantPerIssue(remediationCosts.get(rule.key()))));
 
     repository.done();
+  }
+
+  private String loadResource(String path) {
+    URL resource = getClass().getResource(path);
+    if (resource == null) {
+      throw new IllegalStateException("Resource not found: " + path);
+    }
+    ByteArrayOutputStream result = new ByteArrayOutputStream();
+    try (InputStream in = resource.openStream()) {
+      byte[] buffer = new byte[1024];
+      for (int len = in.read(buffer); len != -1; len = in.read(buffer)) {
+        result.write(buffer, 0, len);
+      }
+      return new String(result.toByteArray(), StandardCharsets.UTF_8);
+    } catch (IOException e) {
+      throw new IllegalStateException("Failed to read resource: " + path, e);
+    }
   }
 }
