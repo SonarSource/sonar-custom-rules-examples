@@ -21,9 +21,12 @@ package org.sonar.samples.php;
 
 
 import com.google.common.collect.ImmutableList;
-
+import java.util.HashMap;
+import java.util.Map;
 import org.sonar.plugins.php.api.visitors.PHPCustomRulesDefinition;
 import org.sonar.samples.php.checks.ForbiddenFunctionUseCheck;
+import org.sonar.samples.php.checks.OtherForbiddenFunctionUseCheck;
+import org.sonar.squidbridge.annotations.AnnotationBasedRulesDefinition;
 
 /**
  * Extension point to define a PHP rule repository.
@@ -52,6 +55,21 @@ public class PHPRulesDefinition extends PHPCustomRulesDefinition {
    */
   @Override
   public ImmutableList<Class> checkClasses() {
-    return ImmutableList.of(ForbiddenFunctionUseCheck.class);
+    return ImmutableList.of(ForbiddenFunctionUseCheck.class, OtherForbiddenFunctionUseCheck.class);
+  }
+
+  @Override
+  public void define(Context context) {
+    NewRepository repository = context.createRepository(this.repositoryKey(), "php").setName(repositoryName());
+    (new AnnotationBasedRulesDefinition(repository, "php")).addRuleClasses(false, checkClasses());
+
+    // Optionally define remediation costs
+    Map<String, String> remediationCosts = new HashMap<>();
+    remediationCosts.put(ForbiddenFunctionUseCheck.KEY, "5min");
+    remediationCosts.put(OtherForbiddenFunctionUseCheck.KEY, "5min");
+    repository.rules().forEach(rule -> rule.setDebtRemediationFunction(
+      rule.debtRemediationFunctions().constantPerIssue(remediationCosts.get(rule.key()))));
+
+    repository.done();
   }
 }
