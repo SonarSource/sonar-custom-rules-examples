@@ -28,7 +28,6 @@ import org.sonar.plugins.php.api.tree.declaration.NamespaceNameTree;
 import org.sonar.plugins.php.api.tree.expression.ExpressionTree;
 import org.sonar.plugins.php.api.tree.expression.FunctionCallTree;
 import org.sonar.plugins.php.api.visitors.PHPVisitorCheck;
-import org.sonar.squidbridge.annotations.SqaleConstantRemediation;
 
 /**
  * Example of implementation of a check by extending {@link PHPVisitorCheck}.
@@ -40,17 +39,17 @@ import org.sonar.squidbridge.annotations.SqaleConstantRemediation;
  * accessed through {@link PHPVisitorCheck#context()}.
  */
 @Rule(
-  key = "S1",
+  key = ForbiddenFunctionUseCheck.KEY,
   priority = Priority.MAJOR,
   name = "Forbidden function should not be used.",
   tags = {"convention"}
 // Description can either be given in this annotation or through HTML name <ruleKey>.html located in package src/resources/org/sonar/l10n/php/rules/<repositoryKey>
 // description = "<p>The following functions should not be used:</p> <ul><li>foo</li> <li>bar</li></ul>"
   )
-@SqaleConstantRemediation("5min")
 public class ForbiddenFunctionUseCheck extends PHPVisitorCheck {
 
   private static final Set<String> FORBIDDEN_FUNCTIONS = ImmutableSet.of("foo", "bar");
+  public static final String KEY = "S1";
 
   /**
    * Overriding method visiting the call expression to create an issue
