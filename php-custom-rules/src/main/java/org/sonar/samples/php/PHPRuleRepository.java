@@ -28,23 +28,16 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
+import org.sonar.api.server.rule.RulesDefinition;
 import org.sonar.api.server.rule.RulesDefinitionAnnotationLoader;
-import org.sonar.plugins.php.api.visitors.PHPCustomRulesDefinition;
+import org.sonar.plugins.php.api.visitors.PHPCustomRuleRepository;
 import org.sonar.samples.php.checks.ForbiddenFunctionUseCheck;
 import org.sonar.samples.php.checks.OtherForbiddenFunctionUseCheck;
 
 /**
  * Extension point to define a PHP rule repository.
  */
-public class PHPRulesDefinition extends PHPCustomRulesDefinition {
-
-  /**
-   * Provide the repository name
-   */
-  @Override
-  public String repositoryName() {
-    return "MyCompany Custom Repository";
-  }
+public class PHPRuleRepository implements RulesDefinition, PHPCustomRuleRepository {
 
   /**
    * Provide the repository key
@@ -65,7 +58,7 @@ public class PHPRulesDefinition extends PHPCustomRulesDefinition {
 
   @Override
   public void define(Context context) {
-    NewRepository repository = context.createRepository(repositoryKey(), "php").setName(repositoryName());
+    NewRepository repository = context.createRepository(repositoryKey(), "php").setName("MyCompany Custom Repository");
 
     // Load rule meta data from annotations
     RulesDefinitionAnnotationLoader annotationLoader = new RulesDefinitionAnnotationLoader();
