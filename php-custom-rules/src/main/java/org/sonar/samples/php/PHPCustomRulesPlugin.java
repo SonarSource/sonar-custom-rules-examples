@@ -28,6 +28,6 @@ public class PHPCustomRulesPlugin implements Plugin {
 
   @Override
   public void define(Context context) {
-    context.addExtension(PHPRuleRepository.class);
+    context.addExtension(MyPhpRules.class);
   }
 }

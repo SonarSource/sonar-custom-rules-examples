@@ -37,7 +37,7 @@ import org.sonar.samples.php.checks.OtherForbiddenFunctionUseCheck;
 /**
  * Extension point to define a PHP rule repository.
  */
-public class PHPRuleRepository implements RulesDefinition, PHPCustomRuleRepository {
+public class MyPhpRules implements RulesDefinition, PHPCustomRuleRepository {
 
   /**
    * Provide the repository key
