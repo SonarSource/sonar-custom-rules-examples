@@ -14,7 +14,7 @@
 
 	<properties>
 		<sonar.version>6.7</sonar.version>
-		<sonarphp.version>2.13.0.3096</sonarphp.version><!-- To be updated when SonarPHP 2.13 is released -->
+		<sonarphp.version>2.13.0.3107</sonarphp.version>
 	</properties>
 
 	<dependencies>
