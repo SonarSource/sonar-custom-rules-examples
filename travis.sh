@@ -26,13 +26,13 @@ RunMaven
 cd ..
 
 cd rpg-custom-rules
-wget https://sonarsource.bintray.com/CommercialDistribution/sonar-rpg-plugin/sonar-rpg-plugin-2.2.0.1005.jar
-mv sonar-rpg-plugin-2.2.0.1005.jar ./lib/sonar-rpg-plugin-2.2.0.1005.jar
+wget https://sonarsource.bintray.com/CommercialDistribution/sonar-rpg-plugin/sonar-rpg-plugin-2.3.0.1187.jar
+mv sonar-rpg-plugin-2.3.0.1187.jar ./lib/sonar-rpg-plugin-2.3.0.1187.jar
 RunMaven
 cd ..
 
 cd cobol-custom-rules
-wget https://sonarsource.bintray.com/CommercialDistribution/sonar-cobol-plugin/sonar-cobol-plugin-4.2.0.2826.jar
-mv sonar-cobol-plugin-4.2.0.2826.jar ./lib/sonar-cobol-plugin-4.2.0.2826.jar
+wget https://sonarsource.bintray.com/CommercialDistribution/sonar-cobol-plugin/sonar-cobol-plugin-4.3.0.3019.jar
+mv sonar-cobol-plugin-4.3.0.3019.jar ./lib/sonar-cobol-plugin-4.3.0.3019.jar
 RunMaven
 cd ..
