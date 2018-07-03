@@ -83,7 +83,7 @@ public class MyJavaRulesDefinition implements RulesDefinition {
     if (rule == null) {
       throw new IllegalStateException("No rule was created for " + ruleClass + " in " + repository.key());
     }
-    ruleMetadata(ruleClass, rule);
+    ruleMetadata(rule);
 
     rule.setTemplate(AnnotationUtils.getAnnotation(ruleClass, RuleTemplate.class) != null);
     if (ruleAnnotation.cardinality() == Cardinality.MULTIPLE) {
@@ -91,16 +91,10 @@ public class MyJavaRulesDefinition implements RulesDefinition {
     }
   }
 
-  private String ruleMetadata(Class<?> ruleClass, NewRule rule) {
+  private void ruleMetadata(NewRule rule) {
     String metadataKey = rule.key();
-    org.sonar.java.RspecKey rspecKeyAnnotation = AnnotationUtils.getAnnotation(ruleClass, org.sonar.java.RspecKey.class);
-    if (rspecKeyAnnotation != null) {
-      metadataKey = rspecKeyAnnotation.value();
-      rule.setInternalKey(metadataKey);
-    }
     addHtmlDescription(rule, metadataKey);
     addMetadata(rule, metadataKey);
-    return metadataKey;
   }
 
   private void addMetadata(NewRule rule, String metadataKey) {

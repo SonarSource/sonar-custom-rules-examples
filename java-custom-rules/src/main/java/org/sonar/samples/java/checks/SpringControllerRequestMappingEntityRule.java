@@ -19,8 +19,6 @@
  */
 package org.sonar.samples.java.checks;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.sonar.check.Rule;
 import org.sonar.plugins.java.api.JavaFileScanner;
 import org.sonar.plugins.java.api.JavaFileScannerContext;
@@ -33,8 +31,6 @@ import org.sonar.plugins.java.api.tree.VariableTree;
 
 @Rule(key = "SpringControllerRequestMappingEntity")
 public class SpringControllerRequestMappingEntityRule extends BaseTreeVisitor implements JavaFileScanner {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(SpringControllerRequestMappingEntityRule.class);
 
   private JavaFileScannerContext context;
 
@@ -51,26 +47,22 @@ public class SpringControllerRequestMappingEntityRule extends BaseTreeVisitor im
    */
   @Override
   public void visitMethod(MethodTree tree) {
-
     Symbol.MethodSymbol methodSymbol = tree.symbol();
 
     SymbolMetadata parentClassOwner = methodSymbol.owner().metadata();
     boolean isControllerContext = parentClassOwner.isAnnotatedWith("org.springframework.stereotype.Controller");
 
-    if (isControllerContext) {
+    if (isControllerContext
+      && methodSymbol.metadata().isAnnotatedWith("org.springframework.web.bind.annotation.RequestMapping")) {
 
-      if (methodSymbol.metadata().isAnnotatedWith("org.springframework.web.bind.annotation.RequestMapping")) {
-
-        for (VariableTree param : tree.parameters()) {
-          TypeTree typeOfParam = param.type();
-          if (typeOfParam.symbolType().symbol().metadata().isAnnotatedWith("javax.persistence.Entity")) {
-            context.reportIssue(this, typeOfParam, String.format("Don't use %s here because it's an @Entity", typeOfParam.symbolType().name()));
-          }
+      for (VariableTree param : tree.parameters()) {
+        TypeTree typeOfParam = param.type();
+        if (typeOfParam.symbolType().symbol().metadata().isAnnotatedWith("javax.persistence.Entity")) {
+          context.reportIssue(this, typeOfParam, String.format("Don't use %s here because it's an @Entity", typeOfParam.symbolType().name()));
         }
-
       }
-    }
 
+    }
     super.visitMethod(tree);
   }
 

@@ -25,7 +25,6 @@ package org.sonar.samples.java.checks;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.Test;
 import org.sonar.java.checks.verifier.JavaCheckVerifier;
 
