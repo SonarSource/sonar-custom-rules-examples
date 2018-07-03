@@ -18,8 +18,8 @@
     <version.junit>4.11</version.junit>
     <version.logback>1.1.7</version.logback>
 
-    <sonar.version>6.7</sonar.version>
-    <sonarcobol.version>4.2.0.2826</sonarcobol.version>
+    <sonar.version>6.7.4</sonar.version>
+    <sonarcobol.version>4.3.0.3019</sonarcobol.version>
   </properties>
 
   <dependencies>

@@ -13,8 +13,8 @@
 	<inceptionYear>2016</inceptionYear>
 
 	<properties>		
-		<sonar.version>6.7</sonar.version>
-		<sonarrpg.version>2.2.0.1005</sonarrpg.version>
+		<sonar.version>6.7.4</sonar.version>
+		<sonarrpg.version>2.3.0.1187</sonarrpg.version>
 	</properties>
 
 	<dependencies>
