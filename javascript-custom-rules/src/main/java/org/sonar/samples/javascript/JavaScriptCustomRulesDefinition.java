@@ -19,21 +19,38 @@
  */
 package org.sonar.samples.javascript;
 
-import org.sonar.plugins.javascript.api.CustomJavaScriptRulesDefinition;
+import com.google.common.io.CharStreams;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.List;
+import org.sonar.api.server.rule.RulesDefinition;
+import org.sonar.api.server.rule.RulesDefinitionAnnotationLoader;
+import org.sonar.plugins.javascript.api.CustomRuleRepository;
 import org.sonar.samples.javascript.checks.ForbiddenFunctionUseCheck;
 import org.sonar.samples.javascript.checks.OtherForbiddenFunctionUseCheck;
 
 /**
  * Extension point to define a JavaScript rule repository.
  */
-public class JavaScriptCustomRulesDefinition extends CustomJavaScriptRulesDefinition {
+public class JavaScriptCustomRulesDefinition implements RulesDefinition, CustomRuleRepository {
 
-  /**
-   * Provide the repository name
-   */
   @Override
-  public String repositoryName() {
-    return "MyCompany Custom Repository";
+  public void define(Context context) {
+    RulesDefinition.NewRepository repository = context.createRepository(repositoryKey(), "js")
+      .setName("MyCompany Custom Repository");
+
+    // this will load metadata from @Rule annotation
+    new RulesDefinitionAnnotationLoader().load(repository, checkClasses().toArray(new Class[] {}));
+    NewRule rule = repository.rule("S1");
+    // description is loaded from html file in resources directory
+    rule.setHtmlDescription(loadRuleDescription(rule.key()));
+    // remediation function sets how much rule violation contributes to technical debt
+    rule.setDebtRemediationFunction(rule.debtRemediationFunctions().linear("5min"));
+
+    repository.done();
   }
 
   /**
@@ -49,7 +66,20 @@ public class JavaScriptCustomRulesDefinition extends CustomJavaScriptRulesDefini
    * to be part of the rule repository
    */
   @Override
-  public Class[] checkClasses() {
-    return new Class[] {ForbiddenFunctionUseCheck.class, OtherForbiddenFunctionUseCheck.class};
+  public List<Class> checkClasses() {
+    return Arrays.asList(ForbiddenFunctionUseCheck.class, OtherForbiddenFunctionUseCheck.class);
+  }
+
+  private static String loadRuleDescription(String ruleKey) {
+    try {
+      InputStream resource = JavaScriptCustomRulesDefinition.class.getClassLoader()
+        .getResourceAsStream(ruleKey + ".html");
+      if (resource == null) {
+        throw new IllegalStateException("Rule description not found");
+      }
+      return CharStreams.toString(new InputStreamReader(resource, StandardCharsets.UTF_8));
+    } catch (IOException e) {
+      throw new IllegalStateException("Error loading rule description", e);
+    }
   }
 }
