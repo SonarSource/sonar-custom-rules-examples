@@ -13,8 +13,9 @@
 	<inceptionYear>2016</inceptionYear>
 
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<sonar.version>6.7</sonar.version>
-		<sonarjs.version>4.1.0.6085</sonarjs.version>
+		<sonarjs.version>4.2.0.6476</sonarjs.version>
 	</properties>
 
 	<dependencies>
