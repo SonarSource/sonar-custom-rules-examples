@@ -19,15 +19,14 @@
  */
 package org.sonar.samples.java;
 
-import com.google.common.annotations.VisibleForTesting;
-import com.google.common.collect.Iterables;
-import com.google.common.io.Resources;
 import com.google.gson.Gson;
-import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.util.List;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Locale;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import javax.annotation.Nullable;
 import org.apache.commons.lang.StringUtils;
 import org.sonar.api.rule.RuleStatus;
@@ -59,16 +58,13 @@ public class MyJavaRulesDefinition implements RulesDefinition {
       .createRepository(REPOSITORY_KEY, Java.KEY)
       .setName("MyCompany Custom Repository");
 
-    List<Class<? extends JavaCheck>> checks = RulesList.getChecks();
-    new RulesDefinitionAnnotationLoader().load(repository, Iterables.toArray(checks, Class.class));
-
-    for (Class<? extends JavaCheck> ruleClass : checks) {
-      newRule(ruleClass, repository);
+    for (Class<? extends JavaCheck> check : RulesList.getChecks()) {
+      new RulesDefinitionAnnotationLoader().load(repository, check);
+      newRule(check, repository);
     }
     repository.done();
   }
 
-  @VisibleForTesting
   protected void newRule(Class<? extends JavaCheck> ruleClass, NewRepository repository) {
 
     org.sonar.check.Rule ruleAnnotation = AnnotationUtils.getAnnotation(ruleClass, org.sonar.check.Rule.class);
@@ -118,9 +114,9 @@ public class MyJavaRulesDefinition implements RulesDefinition {
   }
 
   private static String readResource(URL resource) {
-    try {
-      return Resources.toString(resource, StandardCharsets.UTF_8);
-    } catch (IOException e) {
+    try (Stream<String> lines = Files.lines(Paths.get(resource.toURI()), StandardCharsets.UTF_8)) {
+      return lines.collect(Collectors.joining("\n"));
+    } catch (Exception e) {
       throw new IllegalStateException("Failed to read: " + resource, e);
     }
   }
