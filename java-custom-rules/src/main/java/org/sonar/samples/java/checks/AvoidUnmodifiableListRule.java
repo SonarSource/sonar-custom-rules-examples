@@ -19,7 +19,7 @@
  */
 package org.sonar.samples.java.checks;
 
-import com.google.common.collect.ImmutableList;
+import java.util.Collections;
 import java.util.List;
 import org.sonar.check.Rule;
 import org.sonar.plugins.java.api.IssuableSubscriptionVisitor;
@@ -31,7 +31,7 @@ public class AvoidUnmodifiableListRule extends IssuableSubscriptionVisitor {
 
   @Override
   public List<Tree.Kind> nodesToVisit() {
-    return ImmutableList.of(Tree.Kind.NEW_CLASS);
+    return Collections.singletonList(Tree.Kind.NEW_CLASS);
   }
 
   @Override

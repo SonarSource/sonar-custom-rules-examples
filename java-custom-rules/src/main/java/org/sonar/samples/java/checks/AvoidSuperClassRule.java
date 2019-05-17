@@ -22,7 +22,7 @@
  */
 package org.sonar.samples.java.checks;
 
-import com.google.common.collect.ImmutableList;
+import java.util.Collections;
 import java.util.List;
 import org.sonar.check.Rule;
 import org.sonar.plugins.java.api.IssuableSubscriptionVisitor;
@@ -35,12 +35,12 @@ import org.sonar.plugins.java.api.tree.Tree;
 @Rule(key = "AvoidSuperClass")
 public class AvoidSuperClassRule extends IssuableSubscriptionVisitor {
 
-  public static final List<String> SUPER_CLASS_AVOID = ImmutableList.of("org.slf4j.Logger");
+  public static final List<String> SUPER_CLASS_AVOID = Collections.singletonList("org.slf4j.Logger");
 
   @Override
   public List<Tree.Kind> nodesToVisit() {
     // Register to the kind of nodes you want to be called upon visit.
-    return ImmutableList.of(Tree.Kind.CLASS);
+    return Collections.singletonList(Tree.Kind.CLASS);
   }
 
   @Override

@@ -19,7 +19,9 @@
  */
 package org.sonar.samples.java;
 
-import com.google.common.collect.ImmutableList;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import org.sonar.plugins.java.api.JavaCheck;
 import org.sonar.samples.java.checks.AvoidAnnotationRule;
@@ -36,25 +38,26 @@ public final class RulesList {
   private RulesList() {
   }
 
-  public static List<Class> getChecks() {
-    return ImmutableList.<Class>builder().addAll(getJavaChecks()).addAll(getJavaTestChecks()).build();
+  public static List<Class<? extends JavaCheck>> getChecks() {
+    List<Class<? extends JavaCheck>> checks = new ArrayList<>();
+    checks.addAll(getJavaChecks());
+    checks.addAll(getJavaTestChecks());
+    return Collections.unmodifiableList(checks);
   }
 
   public static List<Class<? extends JavaCheck>> getJavaChecks() {
-    return ImmutableList.<Class<? extends JavaCheck>>builder()
-      .add(SpringControllerRequestMappingEntityRule.class)
-      .add(AvoidAnnotationRule.class)
-      .add(AvoidBrandInMethodNamesRule.class)
-      .add(AvoidMethodDeclarationRule.class)
-      .add(AvoidSuperClassRule.class)
-      .add(AvoidUnmodifiableListRule.class)
-      .add(MyCustomSubscriptionRule.class)
-      .add(SecurityAnnotationMandatoryRule.class)
-      .build();
+    return Collections.unmodifiableList(Arrays.asList(
+      SpringControllerRequestMappingEntityRule.class,
+      AvoidAnnotationRule.class,
+      AvoidBrandInMethodNamesRule.class,
+      AvoidMethodDeclarationRule.class,
+      AvoidSuperClassRule.class,
+      AvoidUnmodifiableListRule.class,
+      MyCustomSubscriptionRule.class,
+      SecurityAnnotationMandatoryRule.class));
   }
 
   public static List<Class<? extends JavaCheck>> getJavaTestChecks() {
-    return ImmutableList.<Class<? extends JavaCheck>>builder()
-      .build();
+    return Collections.emptyList();
   }
 }
