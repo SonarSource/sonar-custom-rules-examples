@@ -37,6 +37,7 @@ import org.sonar.api.server.rule.RulesDefinition;
 import org.sonar.api.server.rule.RulesDefinitionAnnotationLoader;
 import org.sonar.api.utils.AnnotationUtils;
 import org.sonar.plugins.java.Java;
+import org.sonar.plugins.java.api.JavaCheck;
 import org.sonar.squidbridge.annotations.RuleTemplate;
 
 /**
@@ -58,17 +59,17 @@ public class MyJavaRulesDefinition implements RulesDefinition {
       .createRepository(REPOSITORY_KEY, Java.KEY)
       .setName("MyCompany Custom Repository");
 
-    List<Class> checks = RulesList.getChecks();
+    List<Class<? extends JavaCheck>> checks = RulesList.getChecks();
     new RulesDefinitionAnnotationLoader().load(repository, Iterables.toArray(checks, Class.class));
 
-    for (Class ruleClass : checks) {
+    for (Class<? extends JavaCheck> ruleClass : checks) {
       newRule(ruleClass, repository);
     }
     repository.done();
   }
 
   @VisibleForTesting
-  protected void newRule(Class<?> ruleClass, NewRepository repository) {
+  protected void newRule(Class<? extends JavaCheck> ruleClass, NewRepository repository) {
 
     org.sonar.check.Rule ruleAnnotation = AnnotationUtils.getAnnotation(ruleClass, org.sonar.check.Rule.class);
     if (ruleAnnotation == null) {

@@ -19,7 +19,7 @@
  */
 package org.sonar.samples.java.checks;
 
-import com.google.common.collect.ImmutableList;
+import java.util.Collections;
 import java.util.List;
 import org.sonar.check.Rule;
 import org.sonar.plugins.java.api.IssuableSubscriptionVisitor;
@@ -37,7 +37,7 @@ public class MyCustomSubscriptionRule extends IssuableSubscriptionVisitor {
   @Override
   public List<Tree.Kind> nodesToVisit() {
     // Register to the kind of nodes you want to be called upon visit.
-    return ImmutableList.of(Tree.Kind.METHOD);
+    return Collections.singletonList(Tree.Kind.METHOD);
   }
 
   @Override
