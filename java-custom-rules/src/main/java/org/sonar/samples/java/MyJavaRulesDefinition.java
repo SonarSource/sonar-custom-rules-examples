@@ -20,13 +20,11 @@
 package org.sonar.samples.java;
 
 import com.google.gson.Gson;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Locale;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import javax.annotation.Nullable;
 import org.apache.commons.lang.StringUtils;
 import org.sonar.api.rule.RuleStatus;
@@ -114,8 +112,8 @@ public class MyJavaRulesDefinition implements RulesDefinition {
   }
 
   private static String readResource(URL resource) {
-    try (Stream<String> lines = Files.lines(Paths.get(resource.toURI()), StandardCharsets.UTF_8)) {
-      return lines.collect(Collectors.joining("\n"));
+    try (BufferedReader reader = new BufferedReader(new InputStreamReader(resource.openStream()))) {
+      return reader.lines().collect(Collectors.joining("\n"));
     } catch (Exception e) {
       throw new IllegalStateException("Failed to read: " + resource, e);
     }
