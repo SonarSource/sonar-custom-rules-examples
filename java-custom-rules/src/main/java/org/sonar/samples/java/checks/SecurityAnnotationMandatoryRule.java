@@ -24,15 +24,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sonar.check.Rule;
 import org.sonar.check.RuleProperty;
-import org.sonar.java.model.PackageUtils;
 import org.sonar.plugins.java.api.JavaFileScanner;
 import org.sonar.plugins.java.api.JavaFileScannerContext;
 import org.sonar.plugins.java.api.tree.AnnotationTree;
 import org.sonar.plugins.java.api.tree.BaseTreeVisitor;
 import org.sonar.plugins.java.api.tree.ClassTree;
 import org.sonar.plugins.java.api.tree.CompilationUnitTree;
+import org.sonar.plugins.java.api.tree.ExpressionTree;
 import org.sonar.plugins.java.api.tree.IdentifierTree;
+import org.sonar.plugins.java.api.tree.MemberSelectExpressionTree;
 import org.sonar.plugins.java.api.tree.MethodTree;
+import org.sonar.plugins.java.api.tree.PackageDeclarationTree;
 import org.sonar.plugins.java.api.tree.Tree;
 import org.sonar.plugins.java.api.tree.TypeTree;
 
@@ -62,7 +64,7 @@ public class SecurityAnnotationMandatoryRule extends BaseTreeVisitor implements 
   public void visitClass(ClassTree tree) {
     List<TypeTree> interfaces = tree.superInterfaces();
     for (TypeTree typeTree : interfaces) {
-      LOGGER.info("implements Interface : " + typeTree);
+      LOGGER.info("implements Interface: {}", typeTree);
       if ("MySecurityInterface".equals(typeTree.toString())) {
         implementsSpecificInterface = Boolean.TRUE;
       }
@@ -74,12 +76,30 @@ public class SecurityAnnotationMandatoryRule extends BaseTreeVisitor implements 
   @Override
   public void visitCompilationUnit(CompilationUnitTree tree) {
 
-    if (tree.packageDeclaration() != null) {
-      String packageName = PackageUtils.packageName(tree.packageDeclaration(), ".");
-      LOGGER.info("PackageName : " + packageName);
+    PackageDeclarationTree packageDeclaration = tree.packageDeclaration();
+    if (packageDeclaration != null) {
+      printPackageName(packageDeclaration.packageName());
     }
 
     super.visitCompilationUnit(tree);
+  }
+
+  private static void printPackageName(ExpressionTree packageName) {
+    StringBuilder sb = new StringBuilder();
+    ExpressionTree expr = packageName;
+    while (expr.is(Tree.Kind.MEMBER_SELECT)) {
+      MemberSelectExpressionTree mse = (MemberSelectExpressionTree) expr;
+      sb.insert(0, mse.identifier().name());
+      sb.insert(0, mse.operatorToken().text());
+      expr = mse.expression();
+    }
+    if (expr.is(Tree.Kind.IDENTIFIER)) {
+      IdentifierTree idt = (IdentifierTree) expr;
+      sb.insert(0, idt.name());
+    }
+
+    LOGGER.info("PackageName: {}", sb);
+
   }
 
   @Override
@@ -90,11 +110,12 @@ public class SecurityAnnotationMandatoryRule extends BaseTreeVisitor implements 
       boolean isHavingMandatoryAnnotation = Boolean.FALSE;
 
       for (AnnotationTree annotationTree : annotations) {
-        if (annotationTree.annotationType().is(Tree.Kind.IDENTIFIER)) {
-          IdentifierTree idf = (IdentifierTree) annotationTree.annotationType();
-          LOGGER.info("Method Name {}", idf.name());
+        TypeTree annotationType = annotationTree.annotationType();
+        if (annotationType.is(Tree.Kind.IDENTIFIER)) {
+          String annotationName = ((IdentifierTree) annotationType).name();
+          LOGGER.info("Method Name {}", annotationName);
 
-          if (idf.name().equals(name)) {
+          if (annotationName.equals(name)) {
             isHavingMandatoryAnnotation = Boolean.TRUE;
           }
         }
