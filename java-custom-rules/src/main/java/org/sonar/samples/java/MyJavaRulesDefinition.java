@@ -33,7 +33,6 @@ import org.sonar.api.server.debt.DebtRemediationFunction;
 import org.sonar.api.server.rule.RulesDefinition;
 import org.sonar.api.server.rule.RulesDefinitionAnnotationLoader;
 import org.sonar.api.utils.AnnotationUtils;
-import org.sonar.plugins.java.Java;
 import org.sonar.plugins.java.api.JavaCheck;
 import org.sonar.squidbridge.annotations.RuleTemplate;
 
@@ -53,7 +52,7 @@ public class MyJavaRulesDefinition implements RulesDefinition {
   @Override
   public void define(Context context) {
     NewRepository repository = context
-      .createRepository(REPOSITORY_KEY, Java.KEY)
+      .createRepository(REPOSITORY_KEY, "java")
       .setName("MyCompany Custom Repository");
 
     for (Class<? extends JavaCheck> check : RulesList.getChecks()) {
