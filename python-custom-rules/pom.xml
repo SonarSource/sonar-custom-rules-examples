@@ -11,6 +11,9 @@
   <name>Python Custom Rules Plugin</name>
   <description>Python Custom Rules</description>
 
+  <properties>
+    <sonar.python.version>2.0-SNAPSHOT</sonar.python.version>
+  </properties>
   <dependencies>
     <dependency>
       <groupId>org.sonarsource.sonarqube</groupId>
@@ -22,13 +25,13 @@
       <groupId>org.sonarsource.python</groupId>
       <artifactId>sonar-python-plugin</artifactId>
       <type>sonar-plugin</type>
-      <version>2.0-SNAPSHOT</version>
+      <version>${sonar.python.version}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.sonarsource.python</groupId>
       <artifactId>python-checks-testkit</artifactId>
-      <version>2.0-SNAPSHOT</version>
+      <version>${sonar.python.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -42,19 +45,13 @@
   <build>
     <plugins>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <configuration>
-          <skipTests>false</skipTests>
-        </configuration>
-      </plugin>
-      <plugin>
         <groupId>org.sonarsource.sonar-packaging-maven-plugin</groupId>
         <artifactId>sonar-packaging-maven-plugin</artifactId>
         <version>1.18.0.372</version>
         <extensions>true</extensions>
         <configuration>
           <pluginClass>org.sonar.samples.python.CustomPythonRulesPlugin</pluginClass>
+          <requirePlugins>python:${sonar.python.version}</requirePlugins>
         </configuration>
       </plugin>
 
