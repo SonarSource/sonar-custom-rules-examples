@@ -17,26 +17,8 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package org.sonar.samples.python;
+@ParametersAreNonnullByDefault
+package org.sonar.samples.python.checks;
 
-import org.sonar.check.Priority;
-import org.sonar.check.Rule;
-import org.sonar.plugins.python.api.PythonCheckTree;
-import org.sonar.plugins.python.api.tree.FunctionDef;
+import javax.annotation.ParametersAreNonnullByDefault;
 
-@Rule(
-  key = CustomPythonVisitorCheck.RULE_KEY_VISITOR,
-  priority = Priority.MINOR,
-  name = "Python visitor check",
-  description = "desc")
-public class CustomPythonVisitorCheck extends PythonCheckTree {
-
-  public static final String RULE_KEY_VISITOR = "visitor";
-
-  @Override
-  public void visitFunctionDef(FunctionDef pyFunctionDefTree) {
-    addIssue(pyFunctionDefTree.name(), "Function def.");
-    super.visitFunctionDef(pyFunctionDefTree);
-  }
-
-}
