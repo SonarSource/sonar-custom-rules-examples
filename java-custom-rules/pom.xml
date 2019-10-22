@@ -135,6 +135,7 @@
 					<pluginClass>org.sonar.samples.java.MyJavaRulesPlugin</pluginClass>
 					<sonarLintSupported>true</sonarLintSupported>
 					<sonarQubeMinVersion>6.7</sonarQubeMinVersion>
+					<requirePlugins>java:${sonarjava.version}</requirePlugins>
 				</configuration>
 			</plugin>
 
