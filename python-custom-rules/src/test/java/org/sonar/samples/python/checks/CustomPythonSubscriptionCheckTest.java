@@ -17,15 +17,15 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package org.sonar.samples.python;
-
+package org.sonar.samples.python.checks;
 
 import org.junit.Test;
 import org.sonar.python.checks.utils.PythonCheckVerifier;
+import org.sonar.samples.python.checks.CustomPythonSubscriptionCheck;
 
-public class CustomPythonVisitorCheckTest {
+public class CustomPythonSubscriptionCheckTest {
   @Test
   public void test() {
-    PythonCheckVerifier.verify("src/test/resources/checks/customPythonVisitorCheck.py", new CustomPythonVisitorCheck());
+    PythonCheckVerifier.verify("src/test/resources/checks/customPythonSubscriptionCheck.py", new CustomPythonSubscriptionCheck());
   }
 }
