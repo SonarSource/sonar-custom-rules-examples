@@ -25,9 +25,9 @@ cd php-custom-rules
 RunMaven
 cd ..
 
-cd python-custom-rules
-RunMaven
-cd ..
+# cd python-custom-rules
+# RunMaven
+# cd ..
 
 cd rpg-custom-rules
 wget https://binaries.sonarsource.com/CommercialDistribution/sonar-rpg-plugin/sonar-rpg-plugin-2.3.0.1187.jar
