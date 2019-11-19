@@ -12,7 +12,7 @@
   <description>Python Custom Rules</description>
 
   <properties>
-    <sonar.python.version>2.0-SNAPSHOT</sonar.python.version> <!-- minimum version is 2.0, Custom Rules API is not available for 1.x -->
+    <sonar.python.version>2.1.0.5269</sonar.python.version> <!-- minimum version is 2.0, Custom Rules API is not available for 1.x -->
   </properties>
   <dependencies>
     <dependency>
