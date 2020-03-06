@@ -19,27 +19,19 @@
  */
 package org.sonar.samples.java.checks;
 
-import java.util.Collections;
-import java.util.List;
-import org.sonar.check.Rule;
-import org.sonar.plugins.java.api.IssuableSubscriptionVisitor;
-import org.sonar.plugins.java.api.tree.NewClassTree;
-import org.sonar.plugins.java.api.tree.Tree;
+import org.junit.Test;
+import org.sonar.java.checks.verifier.JavaCheckVerifier;
 
-@Rule(key = "AvoidUnmodifiableList")
-public class AvoidUnmodifiableListRule extends IssuableSubscriptionVisitor {
+public class AvoidTreeListTest {
 
-  @Override
-  public List<Tree.Kind> nodesToVisit() {
-    return Collections.singletonList(Tree.Kind.NEW_CLASS);
-  }
+  @Test
+  public void verify() {
+    // In order to test this check efficiently, we added the test-jar "org.apache.commons.commons-collections4" to the pom,
+    // which is normally not used by the code of our custom plugin.
+    // All the classes from this jar will then be read when verifying the ticket, allowing correct type resolution.
 
-  @Override
-  public void visitNode(Tree tree) {
-
-    if (((NewClassTree) tree).symbolType().isSubtypeOf("org.apache.commons.collections4.list.UnmodifiableList")) {
-      reportIssue(tree, "Avoid using UnmodifiableList");
-    }
+    // Verifies automatically that the check will raise the adequate issues with the expected message
+    JavaCheckVerifier.verify("src/test/files/AvoidTreeList.java", new AvoidTreeListRule());
   }
 
 }
