@@ -26,7 +26,7 @@ public class SpringControllerRequestMappingEntityRuleTest {
 
   @Test
   public void check() {
-    JavaCheckVerifier.verify("src/test/files/SpringControllerRequestMappingEntityRule.java", new SpringControllerRequestMappingEntityRule());
+    JavaCheckVerifier.verify("src/test/files/SpringControllerRequestMappingEntityRule.java", new SpringControllerRequestMappingEntityRule(), "target/test-jars");
   }
 
 }
