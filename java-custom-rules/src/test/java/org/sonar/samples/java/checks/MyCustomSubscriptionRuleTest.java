@@ -29,6 +29,9 @@ public class MyCustomSubscriptionRuleTest {
     // Verifies that the check will raise the adequate issues with the expected message.
     // In the test file, lines which should raise an issue have been commented out
     // by using the following syntax: "// Noncompliant {{EXPECTED_MESSAGE}}"
-    JavaCheckVerifier.verify("src/test/files/MyCustomRule.java", new MyCustomSubscriptionRule());
+    JavaCheckVerifier.newVerifier()
+      .onFile("src/test/files/MyCustomRule.java")
+      .withCheck(new MyCustomSubscriptionRule())
+      .verifyIssues();
   }
 }
