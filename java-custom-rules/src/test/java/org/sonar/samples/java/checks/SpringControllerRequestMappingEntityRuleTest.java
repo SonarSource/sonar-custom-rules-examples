@@ -21,12 +21,17 @@ package org.sonar.samples.java.checks;
 
 import org.junit.Test;
 import org.sonar.java.checks.verifier.JavaCheckVerifier;
+import org.sonar.java.testing.FilesUtils;
 
 public class SpringControllerRequestMappingEntityRuleTest {
 
   @Test
   public void check() {
-    JavaCheckVerifier.verify("src/test/files/SpringControllerRequestMappingEntityRule.java", new SpringControllerRequestMappingEntityRule(), "target/test-jars");
+    JavaCheckVerifier.newVerifier()
+      .onFile("src/test/files/SpringControllerRequestMappingEntityRule.java")
+      .withCheck(new SpringControllerRequestMappingEntityRule())
+      .withClassPath(FilesUtils.getClassPath("target/test-jars"))
+      .verifyIssues();
   }
 
 }
