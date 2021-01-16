@@ -23,7 +23,9 @@ import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.Collections;
 import java.util.Locale;
+import java.util.Set;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 import org.apache.commons.lang.StringUtils;
@@ -34,7 +36,6 @@ import org.sonar.api.server.rule.RulesDefinition;
 import org.sonar.api.server.rule.RulesDefinitionAnnotationLoader;
 import org.sonar.api.utils.AnnotationUtils;
 import org.sonar.plugins.java.api.JavaCheck;
-import org.sonar.squidbridge.annotations.RuleTemplate;
 
 /**
  * Declare rule metadata in server repository of rules. 
@@ -46,6 +47,8 @@ public class MyJavaRulesDefinition implements RulesDefinition {
   private static final String RESOURCE_BASE_PATH = "/org/sonar/l10n/java/rules/squid";
 
   public static final String REPOSITORY_KEY = "mycompany-java";
+  
+  private static final Set<String> TEMPLATES = Collections.emptySet();
 
   private final Gson gson = new Gson();
 
@@ -78,7 +81,7 @@ public class MyJavaRulesDefinition implements RulesDefinition {
     }
     ruleMetadata(rule);
 
-    rule.setTemplate(AnnotationUtils.getAnnotation(ruleClass, RuleTemplate.class) != null);
+    rule.setTemplate(TEMPLATES.contains(ruleKey));
   }
 
   private void ruleMetadata(NewRule rule) {

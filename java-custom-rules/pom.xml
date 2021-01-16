@@ -42,35 +42,7 @@
 			<artifactId>sonar-plugin-api-impl</artifactId>
 			<version>${sonar.version}</version>
 		</dependency>
-
-		<dependency>
-			<groupId>org.sonarsource.sslr-squid-bridge</groupId>
-			<artifactId>sslr-squid-bridge</artifactId>
-			<version>2.6.1</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.codehaus.sonar.sslr</groupId>
-					<artifactId>sslr-core</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.codehaus.sonar</groupId>
-					<artifactId>sonar-plugin-api</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.codehaus.sonar.sslr</groupId>
-					<artifactId>sslr-xpath</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.slf4j</groupId>
-					<artifactId>jcl-over-slf4j</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.slf4j</groupId>
-					<artifactId>slf4j-api</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
+		
 		<dependency>
 			<groupId>org.sonarsource.java</groupId>
 			<artifactId>java-checks-testkit</artifactId>
