@@ -15,7 +15,7 @@
 
   <properties>
     <version.harmcrest>1.1</version.harmcrest>
-    <version.junit>4.11</version.junit>
+    <version.junit>4.13.1</version.junit>
     <version.logback>1.1.7</version.logback>
 
     <sonar.version>6.7.4</sonar.version>
