@@ -37,6 +37,7 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.10</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
@@ -45,13 +46,14 @@
 			<plugin>
 				<groupId>org.sonarsource.sonar-packaging-maven-plugin</groupId>
 				<artifactId>sonar-packaging-maven-plugin</artifactId>
-				<version>1.17</version>
+				<version>1.21.0.505</version>
 				<extensions>true</extensions>
 				<configuration>
 					<pluginKey>php-custom</pluginKey>
 					<pluginName>PHP Custom Rules</pluginName>
 					<pluginClass>org.sonar.samples.php.PHPCustomRulesPlugin</pluginClass>
 					<sonarLintSupported>true</sonarLintSupported>
+					<skipDependenciesPackaging>true</skipDependenciesPackaging>
 					<sonarQubeMinVersion>6.7</sonarQubeMinVersion>
 					<basePlugin>php</basePlugin>
 				</configuration>

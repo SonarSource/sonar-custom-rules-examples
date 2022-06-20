@@ -64,13 +64,14 @@
       <plugin>
         <groupId>org.sonarsource.sonar-packaging-maven-plugin</groupId>
         <artifactId>sonar-packaging-maven-plugin</artifactId>
-        <version>1.17</version>
+        <version>1.21.0.505</version>
         <extensions>true</extensions>
         <configuration>
           <pluginKey>cobol-custom</pluginKey>
           <pluginName>COBOL Custom Rules</pluginName>
           <pluginClass>com.mycompany.cobol.sample.CobolCustomRulesPlugin</pluginClass>
           <sonarLintSupported>true</sonarLintSupported>
+					<skipDependenciesPackaging>true</skipDependenciesPackaging>
           <sonarQubeMinVersion>6.7</sonarQubeMinVersion>
           <basePlugin>cobol</basePlugin>
         </configuration>

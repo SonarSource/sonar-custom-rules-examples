@@ -47,11 +47,13 @@
       <plugin>
         <groupId>org.sonarsource.sonar-packaging-maven-plugin</groupId>
         <artifactId>sonar-packaging-maven-plugin</artifactId>
-        <version>1.18.0.372</version>
+        <version>1.21.0.505</version>
         <extensions>true</extensions>
         <configuration>
           <pluginClass>org.sonar.samples.python.CustomPythonRulesPlugin</pluginClass>
           <requirePlugins>python:${sonar.python.version}</requirePlugins>
+          <sonarLintSupported>true</sonarLintSupported>
+          <skipDependenciesPackaging>true</skipDependenciesPackaging>
         </configuration>
       </plugin>
 
