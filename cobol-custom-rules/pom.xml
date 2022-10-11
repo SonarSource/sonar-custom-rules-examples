@@ -74,6 +74,11 @@
 					<skipDependenciesPackaging>true</skipDependenciesPackaging>
           <sonarQubeMinVersion>6.7</sonarQubeMinVersion>
           <basePlugin>cobol</basePlugin>
+          <archive>
+            <manifest>
+              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+            </manifest>
+          </archive>
         </configuration>
       </plugin>
       <plugin>
