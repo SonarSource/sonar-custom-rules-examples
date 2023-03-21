@@ -13,7 +13,7 @@
 	<inceptionYear>2016</inceptionYear>
 
 	<properties>
-		<sonar.version>6.7</sonar.version>
+		<sonar.version>7.4</sonar.version>
 		<sonarphp.version>2.13.0.3107</sonarphp.version>
 	</properties>
 
