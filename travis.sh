@@ -13,10 +13,6 @@ RunMaven() {
   fi
 }
 
-cd php-custom-rules	
-RunMaven
-cd ..
-
 cd python-custom-rules
 RunMaven
 cd ..
