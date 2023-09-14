@@ -1,0 +1,7 @@
+container:
+  image: maven:3.9.4-eclipse-temurin-11
+
+build_task:
+  maven_cache:
+    folder: ~/.m2/repository
+  build_script: ./build.sh
