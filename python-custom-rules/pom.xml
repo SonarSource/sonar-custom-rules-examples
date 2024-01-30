@@ -54,6 +54,7 @@
           <requirePlugins>python:${sonar.python.version}</requirePlugins>
           <sonarLintSupported>true</sonarLintSupported>
           <skipDependenciesPackaging>true</skipDependenciesPackaging>
+          <requiredForLanguages>python</requiredForLanguages>
         </configuration>
       </plugin>
 
