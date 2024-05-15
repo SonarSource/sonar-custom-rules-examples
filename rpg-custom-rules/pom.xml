@@ -13,26 +13,23 @@
 	<inceptionYear>2016</inceptionYear>
 
 	<properties>		
-		<sonar.version>6.7.4</sonar.version>
-		<sonarrpg.version>2.3.0.1187</sonarrpg.version>
+		<sonar.api.version>9.9.0.229</sonar.api.version>
+		<sonarrpg.version>3.3.0.3147</sonarrpg.version>
 	</properties>
 
 	<dependencies>
 
 		<dependency>
-			<groupId>org.sonarsource.sonarqube</groupId>
+			<groupId>org.sonarsource.api.plugin</groupId>
 			<artifactId>sonar-plugin-api</artifactId>
-			<version>${sonar.version}</version>
+			<version>${sonar.api.version}</version>
 			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>com.sonarsource.rpg</groupId>
 			<artifactId>sonar-rpg-plugin</artifactId>
-			<type>sonar-plugin</type>
 			<version>${sonarrpg.version}</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/lib/sonar-rpg-plugin-${sonarrpg.version}.jar</systemPath>
 		</dependency>
 
 		<dependency>
@@ -52,6 +49,29 @@
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-install-plugin</artifactId>
+				<version>3.1.2</version>
+				<configuration>
+					<groupId>com.sonarsource.rpg</groupId>
+					<artifactId>sonar-rpg-plugin</artifactId>
+					<version>${sonarrpg.version}</version>
+					<packaging>jar</packaging>
+					<file>${basedir}/lib/sonar-rpg-plugin-${sonarrpg.version}.jar</file>
+					<generatePom>true</generatePom>
+				</configuration>
+				<executions>
+					<execution>
+						<id>install-rpg-plugin</id>
+						<goals>
+							<goal>install-file</goal>
+						</goals>
+						<phase>validate</phase>
+					</execution>
+				</executions>
+			</plugin>
+
 			<plugin>
 				<groupId>org.sonarsource.sonar-packaging-maven-plugin</groupId>
 				<artifactId>sonar-packaging-maven-plugin</artifactId>

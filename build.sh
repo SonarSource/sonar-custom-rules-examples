@@ -18,8 +18,8 @@ RunMaven
 cd ..
 
 cd rpg-custom-rules
-wget https://binaries.sonarsource.com/CommercialDistribution/sonar-rpg-plugin/sonar-rpg-plugin-2.3.0.1187.jar
-mv sonar-rpg-plugin-2.3.0.1187.jar ./lib/sonar-rpg-plugin-2.3.0.1187.jar
+wget https://binaries.sonarsource.com/CommercialDistribution/sonar-rpg-plugin/sonar-rpg-plugin-3.3.0.3147.jar
+mv sonar-rpg-plugin-3.3.0.3147.jar ./lib/sonar-rpg-plugin-3.3.0.3147.jar
 RunMaven
 cd ..
 
