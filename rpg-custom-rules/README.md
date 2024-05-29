@@ -5,5 +5,4 @@ This example demonstrates how to write **Custom Rules** for SonarRPG.
 See also the [documentation on how to write custom rules for RPG](https://docs.sonarsource.com/sonarqube/latest/analyzing-source-code/languages/rpg/).
 
 This example assumes that the jar file of the RPG plugin is available in the `lib` directory. 
-You can download sonar-rpg-plugin-3.9.0.5001.jar
-[from the SonarSource website](http://redirect.sonarsource.com/plugins/rpg.html).
+The version used in this example (sonar-rpg-plugin-3.9.0.5001.jar) is available [here](https://binaries.sonarsource.com/CommercialDistribution/sonar-rpg-plugin/sonar-rpg-plugin-3.9.0.5001.jar).
