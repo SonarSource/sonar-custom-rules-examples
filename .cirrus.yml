@@ -1,5 +1,5 @@
 container:
-  image: maven:3.9.4-eclipse-temurin-11
+  image: maven:3.9.7-eclipse-temurin-17
 
 build_task:
   maven_cache:
