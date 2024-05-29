@@ -39,10 +39,10 @@
 			<version>4.13.1</version>
 		</dependency>
 		<dependency>
-    	<groupId>org.assertj</groupId>
-    	<artifactId>assertj-core</artifactId>
-    	<version>3.26.0</version>
-    	<scope>test</scope>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<version>3.26.0</version>
+			<scope>test</scope>
 		</dependency>
 
 	</dependencies>
@@ -58,7 +58,7 @@
 					<artifactId>sonar-rpg-plugin</artifactId>
 					<version>${sonarrpg.version}</version>
 					<packaging>jar</packaging>
-					<file>${basedir}/lib/sonar-rpg-plugin-${sonarrpg.version}.jar</file>
+					<file>${project.basedir}/lib/sonar-rpg-plugin-${sonarrpg.version}.jar</file>
 					<generatePom>true</generatePom>
 				</configuration>
 				<executions>
@@ -102,4 +102,3 @@
 	</build>
 
 </project>
-    
