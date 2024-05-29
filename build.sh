@@ -20,6 +20,8 @@ cd ..
 cd rpg-custom-rules
 wget https://binaries.sonarsource.com/CommercialDistribution/sonar-rpg-plugin/sonar-rpg-plugin-3.9.0.5001.jar
 mv sonar-rpg-plugin-3.9.0.5001.jar ./lib/sonar-rpg-plugin-3.9.0.5001.jar
+# We explicitly call validate here, to install the sonar-rpg-plugin jar ahead of packaging
+mvn validate
 RunMaven
 cd ..
 
