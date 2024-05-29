@@ -14,7 +14,7 @@
 
 	<properties>		
 		<sonar.api.version>9.9.0.229</sonar.api.version>
-		<sonarrpg.version>3.3.0.3147</sonarrpg.version>
+		<sonarrpg.version>3.9.0.5001</sonarrpg.version>
 	</properties>
 
 	<dependencies>
@@ -39,10 +39,10 @@
 			<version>4.13.1</version>
 		</dependency>
 		<dependency>
-			<groupId>org.easytesting</groupId>
-			<artifactId>fest-assert</artifactId>
-			<version>1.4</version>
-			<scope>test</scope>
+    	<groupId>org.assertj</groupId>
+    	<artifactId>assertj-core</artifactId>
+    	<version>3.26.0</version>
+    	<scope>test</scope>
 		</dependency>
 
 	</dependencies>
