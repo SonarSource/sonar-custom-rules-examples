@@ -6,5 +6,8 @@ target/
 .project
 .settings
 
+# IntelliJ
 .idea
+*.iws
 *.iml
+*.ipr
