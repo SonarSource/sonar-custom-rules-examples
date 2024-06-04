@@ -76,7 +76,7 @@
         <configuration>
           <pluginClass>${sonar.pluginClass}</pluginClass>
           <pluginKey>my-jcl-custom-plugin</pluginKey>
-		  <sonarLintSupported>true</sonarLintSupported>
+		      <sonarLintSupported>true</sonarLintSupported>
           <requiredForLanguages>jcl</requiredForLanguages>
           <requirePlugins>jcl:${version.sonar-jcl-plugin}</requirePlugins>
         </configuration>
