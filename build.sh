@@ -1,7 +1,7 @@
 #!/bin/bash
 
 RunMaven() {
-  typeset MAVEN_CMD="mvn clean verify package"
+  typeset MAVEN_CMD="mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package"
   typeset RETURN_CODE
 
   echo $MAVEN_CMD
