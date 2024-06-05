@@ -85,6 +85,7 @@
 					<skipDependenciesPackaging>true</skipDependenciesPackaging>
 					<sonarQubeMinVersion>6.7</sonarQubeMinVersion>
 					<basePlugin>rpg</basePlugin>
+					<requiredForLanguages>rpg</requiredForLanguages>
 				</configuration>
 			</plugin>
 
