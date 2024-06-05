@@ -30,3 +30,9 @@ wget https://binaries.sonarsource.com/CommercialDistribution/sonar-cobol-plugin/
 mv sonar-cobol-plugin-4.3.0.3019.jar ./lib/sonar-cobol-plugin-4.3.0.3019.jar
 RunMaven
 cd ..
+
+cd jcl-custom-rules
+wget https://binaries.sonarsource.com/CommercialDistribution/sonar-jcl-plugin/sonar-jcl-plugin-1.2.0.1148.jar
+mv sonar-jcl-plugin-1.2.0.1148.jar ./lib/sonar-jcl-plugin-1.2.0.1148.jar
+RunMaven
+cd ..
