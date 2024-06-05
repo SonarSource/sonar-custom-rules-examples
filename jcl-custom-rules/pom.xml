@@ -1,66 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.sonarsource.samples</groupId>
-	<artifactId>jcl-custom-rules</artifactId>
-	<version>1.0-SNAPSHOT</version>
-	<packaging>sonar-plugin</packaging>
+  <groupId>org.sonarsource.samples</groupId>
+  <artifactId>jcl-custom-rules</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>sonar-plugin</packaging>
 
-	<name>SonarQube JCL Custom Rules Example</name>
-	<description>JCL Custom Rules Example for SonarQube</description>
-	<inceptionYear>2024</inceptionYear>
+  <name>SonarQube JCL Custom Rules Example</name>
+  <description>JCL Custom Rules Example for SonarQube</description>
+  <inceptionYear>2024</inceptionYear>
 
-	<properties>		
+  <properties>		
     <version.sonar>9.9.1.69595</version.sonar>
     <version.sonar.plugin.api>10.1.0.809</version.sonar.plugin.api>
-	<version.sonar-jcl-plugin>1.2.0.1148</version.sonar-jcl-plugin>
+  <version.sonar-jcl-plugin>1.2.0.1148</version.sonar-jcl-plugin>
     <java.version>17</java.version>
     <jdk.min.version>${java.version}</jdk.min.version>
     <jdk.source.version>${java.version}</jdk.source.version>
     <jdk.target.version>${java.version}</jdk.target.version>
     <sonar.pluginClass>com.sonarsource.jcl.example.MyJclCustomPlugin</sonar.pluginClass>
-	</properties>
+  </properties>
 
 
-	<dependencies>
-		<dependency>
-			<groupId>org.sonarsource.api.plugin</groupId>
-			<artifactId>sonar-plugin-api</artifactId>
-			<version>${version.sonar.plugin.api}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.sonarsource.jcl</groupId>
-			<artifactId>sonar-jcl-plugin</artifactId>
-			<type>sonar-plugin</type>
-			<version>${version.sonar-jcl-plugin}</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/lib/sonar-jcl-plugin-${version.sonar-jcl-plugin}.jar</systemPath>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-engine</artifactId>
-			<version>5.10.2</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.sonarsource.analyzer-commons</groupId>
-			<artifactId>sonar-analyzer-test-commons</artifactId>
-			<version>2.7.0.1482</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-core</artifactId>
-			<version>4.11.0</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
+  <dependencies>
+    <dependency>
+      <groupId>org.sonarsource.api.plugin</groupId>
+      <artifactId>sonar-plugin-api</artifactId>
+      <version>${version.sonar.plugin.api}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.sonarsource.jcl</groupId>
+      <artifactId>sonar-jcl-plugin</artifactId>
+      <type>sonar-plugin</type>
+      <version>${version.sonar-jcl-plugin}</version>
+      <scope>system</scope>
+      <systemPath>${basedir}/lib/sonar-jcl-plugin-${version.sonar-jcl-plugin}.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>5.10.2</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.sonarsource.analyzer-commons</groupId>
+      <artifactId>sonar-analyzer-test-commons</artifactId>
+      <version>2.7.0.1482</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>4.11.0</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
 
-	<build>
-		<plugins>
+  <build>
+    <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -76,13 +76,13 @@
         <configuration>
           <pluginClass>${sonar.pluginClass}</pluginClass>
           <pluginKey>my-jcl-custom-plugin</pluginKey>
-		      <sonarLintSupported>true</sonarLintSupported>
+          <sonarLintSupported>true</sonarLintSupported>
           <requiredForLanguages>jcl</requiredForLanguages>
           <requirePlugins>jcl:${version.sonar-jcl-plugin}</requirePlugins>
         </configuration>
       </plugin>
-		</plugins>
-	</build>
+    </plugins>
+  </build>
 
 </project>
     

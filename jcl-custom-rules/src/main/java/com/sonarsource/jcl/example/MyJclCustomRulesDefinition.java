@@ -5,10 +5,13 @@
  */
 package com.sonarsource.jcl.example;
 
+import org.sonar.api.server.rule.RulesDefinition;
 import org.sonar.plugins.jcl.api.CustomRulesDefinition;
 import com.sonarsource.jcl.example.checks.MyCustomRule;
 import java.util.List;
-import org.sonar.api.server.rule.RulesDefinition;
+import org.sonar.api.issue.impact.Severity;
+import org.sonar.api.issue.impact.SoftwareQuality;
+import org.sonar.api.rules.CleanCodeAttribute;
 
 public class MyJclCustomRulesDefinition implements CustomRulesDefinition {
 
@@ -21,7 +24,9 @@ public class MyJclCustomRulesDefinition implements CustomRulesDefinition {
     RulesDefinition.NewRule rule = repository.createRule(MyCustomRule.RULE_KEY)
       .setName("This is the title of my rule")
       .setHtmlDescription("This is the HTML description of my rule")
-      .addTags("convention");
+      .addDefaultImpact(SoftwareQuality.MAINTAINABILITY, Severity.HIGH)
+      .setCleanCodeAttribute(CleanCodeAttribute.CLEAR)
+      .addTags("confusing");
     rule.setDebtRemediationFunction(rule.debtRemediationFunctions().constantPerIssue("10min"));
     repository.done();
   }

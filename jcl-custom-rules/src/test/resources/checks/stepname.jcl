@@ -1,6 +1,6 @@
 //MYJOB JOB ,MSGLEVEL=1
 //STEP1 EXEC PGM=IEFBR14
 //STEP2 EXEC PGM=IEFBR14
-//* Noncompliant@+1 {{Step names must start with 'STEP'.}}
+//* Noncompliant@+1 {{EXEC statement names must start with 'STEP'}}
 //NOSTEP EXEC PGM=IEFBR14
 //STEP3 EXEC PGM=IEFBR14
