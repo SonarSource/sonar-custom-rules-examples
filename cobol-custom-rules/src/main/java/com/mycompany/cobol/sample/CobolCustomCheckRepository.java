@@ -19,6 +19,7 @@
  */
 package com.mycompany.cobol.sample;
 
+import com.mycompany.cobol.sample.checks.ForbiddenCopyRule;
 import com.mycompany.cobol.sample.checks.ForbiddenCallRule;
 import com.mycompany.cobol.sample.checks.IssueOnEachFileRule;
 import com.mycompany.cobol.sample.checks.TrivialEvaluateRule;
@@ -42,7 +43,7 @@ public class CobolCustomCheckRepository implements CobolCheckRepository, RulesDe
 
   // Change key and name to reflect your company rule repository.
   // Don't use "cobol" key, it's the core repository.
-  private static final String REPOSITORY_KEY = "my-custom-cobol";
+  private static final String REPOSITORY_KEY = "customcobol";
   private static final String REPOSITORY_NAME = "My Custom Cobol Analyzer";
 
   // Must be "cobol"
@@ -56,6 +57,7 @@ public class CobolCustomCheckRepository implements CobolCheckRepository, RulesDe
   @Override
   public Collection<Object> getCheckClassesOrObjects() {
     return Arrays.asList(
+      ForbiddenCopyRule.class,
       ForbiddenCallRule.class,
       IssueOnEachFileRule.class,
       TrivialEvaluateRule.class);
@@ -79,6 +81,7 @@ public class CobolCustomCheckRepository implements CobolCheckRepository, RulesDe
 
     // Optionally define remediation costs
     Map<String,String> remediationCosts = new HashMap<>();
+    remediationCosts.put("ForbiddenCopy", "5min");
     remediationCosts.put("ForbiddenCall", "5min");
     remediationCosts.put("IssueOnEachFile", "5min");
     remediationCosts.put("TrivialEvaluate", "5min");
