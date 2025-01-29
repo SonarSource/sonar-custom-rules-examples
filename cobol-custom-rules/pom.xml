@@ -67,7 +67,7 @@
         <version>1.21.0.505</version>
         <extensions>true</extensions>
         <configuration>
-          <pluginKey>cobol-custom</pluginKey>
+          <pluginKey>cobolcustom</pluginKey>
           <pluginName>COBOL Custom Rules</pluginName>
           <pluginClass>com.mycompany.cobol.sample.CobolCustomRulesPlugin</pluginClass>
           <sonarLintSupported>true</sonarLintSupported>
