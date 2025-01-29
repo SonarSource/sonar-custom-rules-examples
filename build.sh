@@ -14,8 +14,8 @@ RunMaven() {
 }
 
 cd cobol-custom-rules
-wget https://binaries.sonarsource.com/CommercialDistribution/sonar-cobol-plugin/sonar-cobol-plugin-4.3.0.3019.jar
-mv sonar-cobol-plugin-4.3.0.3019.jar ./lib/sonar-cobol-plugin-4.3.0.3019.jar
+wget https://binaries.sonarsource.com/CommercialDistribution/sonar-cobol-plugin/sonar-cobol-plugin-5.7.0.8061.jar
+mv sonar-cobol-plugin-5.7.0.8061.jar ./lib/sonar-cobol-plugin-5.7.0.8061.jar
 RunMaven
 cd ..
 

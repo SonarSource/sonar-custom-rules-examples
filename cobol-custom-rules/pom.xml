@@ -19,7 +19,7 @@
     <version.logback>1.2.0</version.logback>
 
     <sonar.version>6.7.4</sonar.version>
-    <sonarcobol.version>4.3.0.3019</sonarcobol.version>
+    <sonarcobol.version>5.7.0.8061</sonarcobol.version>
   </properties>
 
   <dependencies>
