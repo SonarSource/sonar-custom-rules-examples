@@ -5,7 +5,7 @@ This repository contains project examples you can directly clone to bootstrap yo
 
 Related documentation is there: https://docs.sonarqube.org/latest/extend/adding-coding-rules/
 
-Sonar's [Clean Code solutions](https://www.sonarsource.com/solutions/clean-code/?utm_medium=referral&utm_source=github&utm_campaign=clean-code&utm_content=sonar-custom-rules-examples) help developers deliver high-quality, efficient code standards that benefit the entire team or organization.
+Sonar's [integrated code quality and code security](https://www.sonarsource.com/solutions/for-developers/) solutions help developers deliver high-quality, efficient code standards that benefit the entire team or organization.
 
 Have questions or feedback?
 ---------------------------
