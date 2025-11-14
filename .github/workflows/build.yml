@@ -1,0 +1,34 @@
+name: Build
+
+on:
+  schedule:
+    # Run every day at 4:17
+    - cron: "17 4 * * *"
+  push:
+    branches:
+      - master
+      - branch-*
+      - dogfood-*
+  pull_request:
+  merge_group:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.ref_name != github.event.repository.default_branch }}
+
+jobs:
+  build:
+    name: Build
+    runs-on: github-ubuntu-latest-s
+    permissions:
+      contents: write
+    steps:
+      - uses: jdx/mise-action@5ac50f778e26fac95da98d50503682459e86d566 # v3.2.0
+        with:
+          version: 2025.7.12
+          tool_versions: |
+            maven: 3.9
+            java: 17
+      - run:
+          bash build.sh
