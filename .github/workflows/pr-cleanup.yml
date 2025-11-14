@@ -4,7 +4,7 @@ on:
     types: [closed]
 jobs:
   cleanup:
-    runs-on: sonar-xs
+    runs-on: github-ubuntu-latest-s
     permissions:
       actions: write
     steps:
