@@ -1,6 +1,6 @@
 /*
  * SonarQube COBOL Custom Rules Example
- * Copyright (C) 2009-2016 SonarSource SA
+ * Copyright (C) 2009-2016 SonarSource Sàrl
  * mailto:contact AT sonarsource DOT com
  *
  * This program is free software; you can redistribute it and/or

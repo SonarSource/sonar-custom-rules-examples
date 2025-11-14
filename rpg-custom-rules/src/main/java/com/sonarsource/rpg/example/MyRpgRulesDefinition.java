@@ -1,6 +1,6 @@
 /*
  * SonarQube RPG Custom Rules Example
- * Copyright (C) 2016-2016 SonarSource SA
+ * Copyright (C) 2016-2016 SonarSource Sàrl
  * mailto:contact AT sonarsource DOT com
  *
  * This program is free software; you can redistribute it and/or
