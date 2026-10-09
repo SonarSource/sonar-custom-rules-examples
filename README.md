@@ -11,7 +11,7 @@
 
 # Sonar custom rules examples
 
-This repository contains example projects for writing custom analysis rules for COBOL, PHP, Python, and RPG. Clone the relevant example to start a custom-rule project and consult the extension documentation below.
+This repository contains example projects for writing custom analysis rules for COBOL, JCL, PHP, Python, and RPG. Clone the relevant example to start a custom-rule project and consult the extension documentation below.
 
 To learn more about Sonar products, visit the [Sonar website](https://www.sonarsource.com/products/sonarqube/).
 
