@@ -27,6 +27,6 @@ To provide feedback or ask for help, please use the [Sonar Community Forum](http
 
 ### License
 
-Copyright 2016-2022 SonarSource.
+Copyright 2016-2026 SonarSource.
 
 Licensed under the [GNU Lesser General Public License, Version 3.0](http://www.gnu.org/licenses/lgpl.txt)
